@@ -1,0 +1,110 @@
+.calendar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    z-index: 10;
+    width: 340px;
+    height: 241px;
+    background-color: white;
+    box-shadow: 0 0 8px rgb(111, 111, 111);
+}
+.calendar__top {
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+    font-weight: 700;
+}
+.calendar__month {
+    width: 130px;
+}
+.calendar__days {
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    flex-flow: row wrap;
+}
+.calendar__days li {
+    width: 14%;
+    padding: 4px 0;
+    text-align: center;
+    cursor: pointer;
+}
+.calendar__days li:hover {
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.calendar__left img, .calendar__right img {
+    transform: scale(0.3);
+    width: 65px;
+    height: 65px;
+    cursor: pointer;
+}
+
+.clock {
+    z-index: 1090;
+    position: absolute;
+    top: 97%;
+    left: 0;
+    background-color: white;
+    width: 340px;
+    box-shadow: 0 0 8px rgb(111, 111, 111);
+}
+.clock__item {
+    height: 70px;
+    font-size: 28px;
+    line-height: 70px;
+    padding: 0 0 0 25px;
+    cursor: pointer;
+}
+.clock__item:hover {
+    font-weight: 500;   
+    font-size: 28px;
+}
+.clock__item:not(:last-of-type) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 750px) {
+    .calendar {
+        width: 280px;
+        height: 190px;
+    }
+    .calendar__top {
+        font-size: 20px;
+    }
+    .calendar__month {
+        width: 115px;
+    }
+    .calendar__days {
+        font-size: 17px;
+        line-height: 21px;
+    }
+    .calendar__days li:hover {
+        font-size: 18px;
+    }
+    .calendar__left img, .calendar__right img {
+        transform: scale(0.4);
+        width: 40px;
+        height: 40px;
+    }
+    
+    .clock {
+        z-index: 15;
+        position: absolute;
+        top: 99%;
+        left: 0;
+        background-color: white;
+        width: 280px;
+        box-shadow: 0 0 8px rgb(111, 111, 111);
+    }
+    .clock__item {
+        height: 50px;
+        font-size: 20px;
+        line-height: 50px;
+    }
+    .clock__item:hover {
+        font-weight: 600;   
+        font-size: 21px;
+    }
+}

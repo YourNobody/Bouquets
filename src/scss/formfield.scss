@@ -1,0 +1,495 @@
+.formfield input {
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
+}
+
+.formfield .container {
+    max-width: 1058px;
+}
+
+.formfield__main .title {
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;  
+    color: black;
+}
+
+.formfield__title {
+    margin: 90px 0 55px 0;
+    text-align: center;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
+}
+
+.formfield__fullinput input {
+    width: 100%;
+    height: 44px;
+    padding: 1px;
+    border-bottom: 1px solid black;
+    margin: 0 0 93px 0;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
+}
+
+.checkbox{
+    display: none;
+}
+.checkbox + label{
+    display: block;
+    min-width: 34px;
+    min-height: 34px;
+    border: 1px solid black;    
+    text-align: center;    
+    cursor: pointer;
+}
+
+.checkbox:checked + label:before{
+    content: url(../icons/check.svg);
+    position: absolute;
+    transform: translate(-42%, 12%);
+}
+
+.formfield__aim-title {
+    margin: 0 0 19px 0;
+    text-align: left;
+}
+
+.formfield__aim-items, .formfield__putin-boxes {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.aim__item, .putin__box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 0 8px 0;
+}
+
+.aim__item p, .putin__box p {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    color: black;
+    margin: 0 0 0 10px;
+}
+
+
+.formfield__aim-items div:nth-of-type(odd),
+.formfield__putin-boxes div:nth-of-type(odd),
+.putin__box:nth-of-type(odd) {
+    width: 62%;
+}
+
+.formfield__aim-items div:nth-of-type(even), 
+.formfield__putin-boxes div:nth-of-type(even),
+.putin__box:nth-of-type(even) {
+    width: 38%;
+}
+
+.formfield__putin-title {
+    margin: 85px 0 21px 0;
+}
+
+.formfield__putin-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.putin__box {
+    display: flex;
+}
+
+.radio{
+    display: none;
+}
+.radio + label{
+    display: block;
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 50%;
+    border: 1px solid black;    
+    text-align: center;    
+    cursor: pointer;
+}
+
+.radio:checked + label:before{
+    content: url(../icons/ellipse.svg);
+    position: absolute;
+    transform: translate(-50%, 60%);
+}
+
+.formfield__delivery {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    margin: 93px 0 0 0;
+}
+
+.formfield__delivery input {
+    width: 340px;
+    border-bottom: 1px solid black;
+}
+
+.formfield__delivery-title {
+    margin: 0 0 22px 0;
+}
+
+.formfield__delivery-date {
+    width: 62%;
+    position: relative;
+}
+.formfield__delivery-time {
+    width: 38%;
+    position: relative;
+}
+
+.formfield__delivery-calendar, 
+.formfield__delivery-clock {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.formfield__delivery-calendar input {
+    padding: 0 0 0 35px;
+}
+
+.formfield__delivery-clock input {
+    padding: 0 0 0 12px;
+}
+
+.formfield__delivery-clock {
+    justify-content: space-between;
+}
+
+.calendar__icon {
+    position: relative;
+    left: -15%;
+    top: -8px;
+    cursor: pointer;
+}
+
+.clock__icon {
+    height: 40px;
+    min-width: 40px;
+    margin: 0 30px 0 0;
+    font-weight: normal;
+    font-size: 38px;
+    text-align: center;
+    color: #000000;
+    position: relative;
+    left: -15%;
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .formfield form .title {
+        font-size: 27px;
+        line-height: 29px;
+        font-weight: 500;
+    }
+    .formfield__delivery input {
+        font-size: 30px;
+        width: 270px;
+    }
+    .formfield__aim-items div:nth-of-type(odd),
+    .formfield__putin-boxes div:nth-of-type(odd) {
+        width: 55%;
+    }
+    .formfield__aim-items div:nth-of-type(even), 
+    .formfield__putin-boxes div:nth-of-type(even) {
+        width: 45%;
+    }
+    .formfield__delivery-date {
+        width: 55%;
+    }
+    .formfield__delivery-time {
+        width: 45%;
+    }
+    .calendar__icon {
+        transform: scale(0.85);
+    }
+    .clock__icon {
+        left: -22%;
+    }
+}
+
+.formfield__address {
+    margin: 93px 0 0 0;
+}
+
+.formfield__comments {
+    min-height: 120px;
+    border: 1px solid black;
+}
+
+.formfield__comments textarea {
+    overflow: auto;
+    min-height: 120px;
+    height: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    padding: 11px 14px;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
+}
+
+.formfield__footnote {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: black;
+    margin: 21px 0 0 0;
+}
+
+.formfield__total {
+    text-align: center;
+    margin: 90px 0 40px 0;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 59px;
+    color: #71A27C;
+}
+
+.formfield__total span {
+    font-size: 69px;
+}
+
+.formfield__totalbuttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 30px 40px 30px;
+    width: 100%;
+}
+
+.formfield__totalbuttons button {
+    width: 301px;
+    height: 74px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px rgba(43, 0, 0, 0.25);
+    background-color: #556867;
+    font-weight: bold;
+    font-size: 36px;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: center;
+    line-height: 74px;
+    color: white;
+}
+
+.formfield__totalbuttons [name="reset"] {
+    background-color: #71A27C;
+}
+
+@media (max-width: 950px) {
+    .formfield__totalbuttons button {
+        transform: scale(0.85);
+    }
+    .formfield__total {
+        font-size: 36px;
+        span {
+            font-size: 50px;
+        }
+    }
+    .formfield__fullinput input {
+        font-size: 24px;
+        margin: 0 0 60px 0;
+    }
+    .formfield textarea {
+        font-size: 24px;
+        line-height: 28px;
+        padding: 7px 12px;
+    }
+    .formfield p {
+        font-size: 20px;
+    }
+    .formfield form .title {
+        font-size: 24px;
+    }
+    .calendar__icon {
+        transform: scale(0.75);
+        top: -5px;
+    }
+}
+
+@media (max-width: 750px) {
+    .formfield__fullinput input {
+        font-size: 24px;
+        padding: 10px 0 0 0;
+        margin: 0 0 30px 0;
+    }
+    .formfield__delivery {
+        margin: 50px 0 0 0;
+    }
+    .formfield__putin-title {
+        margin: 50px 0 20px 0;
+    }
+    .formfield__aim {
+        margin: 50px 0 0 0;
+    }
+    .formfield__delivery-date {
+        margin: 0 0 50px 0;
+    }
+    .formfield__delivery .title {
+        margin: 0;
+    }
+    .formfield__delivery input {
+        min-width: 100%;
+        padding: 7px 0 0 10px;
+        font-size: 24px;
+    }
+    .aim__item p, .putin__box p {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .radio + label, .checkbox + label {
+        width: 18px;
+        height: 18px;
+    }
+    .formfield__aim-items div,
+    .formfield__putin-boxes div,
+    .putin__box,
+    .formfield__delivery-date,
+    .formfield__delivery-time {
+        min-width: 100%;
+    }
+    .formfield__main .title {
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+    }
+    .formfield__total {
+        font-size: 25px;
+        line-height: 29px;
+        span {
+            font-size: 37px;
+            line-height: 39px;
+        }
+    }
+    .formfield__totalbuttons button {
+        transform: scale(0.75);
+    }
+    .calendar__icon {
+        transform: scale(0.7);
+        left: -15%;
+        top: 0px;
+    }
+    .clock__icon {
+        top: 7px;
+        left: -14%;
+    }
+    .formfield__address {
+        margin: 40px 0 10px 0;
+    }
+    .formfield__comments textarea {
+        font-size: 24px;
+        line-height: 28px;
+        padding: 5px 10px;
+    }
+    .formfield__footnote {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 605px) {
+    .formfield__totalbuttons {
+        padding: 0 15px 30px 15px;
+    }
+    .formfield__totalbuttons button {
+        width: 200px;
+        height: 50px;
+        font-size: 22px;
+        line-height: 50px;
+        transform: scale(1);
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    .formfield__title {
+        margin: 40px 0 15px 0;
+    }
+    .formfield__aim {
+        margin: 20px 0 0 0;
+    }
+    .formfield input {
+        font-size: 16px;
+        padding: 15px 0 0 0;
+    }
+    .formfield__delivery input{
+        font-size: 20px;
+        padding: 5px 0 0 10px;
+    }
+    .calendar__icon {
+        transform: scale(0.5);
+    }
+    .formfield textarea {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    .formfield p {
+        font-size: 16px;
+    }
+    .aim__item {
+        margin: 0 0 10px 0;
+    }
+    form .title {
+        font-size: 22px !important;
+    }
+    .formfield__total {
+        margin: 32px 0 25px 0;
+    }
+    .formfield__totalbuttons button {
+        width: 150px;
+        height: 38px;
+        font-size: 18px;
+        line-height: 38px;
+    }
+    .checkbox + label, .radio + label {
+        min-width: 24px;
+        min-height: 24px;
+    }
+    .checkbox:checked + label:before{
+        content: url(../icons/check.svg);
+        position: absolute;
+        transform: translate(-45%, 0) scale(0.8);
+    }
+    .radio:checked + label:before{
+        content: url(../icons/ellipse.svg);
+        position: absolute;
+        transform: translate(-50%, 28%) scale(0.8);
+    }
+}
+
+@media (max-width: 400px) {
+    .formfield__total {
+        font-size: 22px;
+        span {
+            font-size: 25px;
+        }
+    }
+    .formfield__totalbuttons {
+        padding: 0 0 20px 0;
+    }
+    .formfield__totalbuttons button {
+        width: 120px;
+        height: 35px;
+        font-size: 14px;
+        line-height: 30px;
+    }
+    .formfield p {
+        font-size: 14px;
+    }
+}

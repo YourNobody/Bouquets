@@ -1,0 +1,129 @@
+.about__title {
+    margin: 90px 0 42px 0;
+    text-align: center;
+}
+
+.about__list {
+    display: grid;
+    grid-template: minmax(244px, 1fr) / 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    margin: 0 82px;
+}
+
+@media (max-width: 1100px) {
+    .about__list {
+        grid-template: minmax(244px, 1fr) minmax(244px, 1fr) / 1fr 1fr;
+        justify-items: center;
+        grid-row-gap: 50px;
+    }
+}
+
+.about__item {
+    width: 220px;
+    height: 244px;
+}
+
+.item__img {
+    position: relative;
+    width: 100%;
+    height: 186px;
+}
+
+.item__img img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.about__item:nth-of-type(2) img {
+    width: 75%;
+    height: 75%;
+    margin: 0 auto;
+}
+
+.complex__img {
+    position: relative;
+    width: 100%;
+    height: 186px;
+}
+.complex__img .complex__first {
+    z-index: 2;
+    position: absolute;
+    top: 62px;
+    left: -7px;
+    width: 85%;
+    height: 85%;
+}
+.complex__img .complex__second {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 20px;
+    right: 0px;
+    width: 90%;
+    height: 90%;
+}
+
+.item__text {
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}
+
+@media (max-width: 900px) {
+    .about__list {
+        margin: 0 50px;
+    }
+    .about__title {
+        margin: 55px 0 25px 0;
+    }
+    .about__item {
+        transform: scale(0.87);
+    }
+}
+@media (max-width: 500px) {
+    .about__list {
+        grid-template: minmax(100px, 1fr) minmax(100px, 1fr) / 1fr 1fr;
+        justify-items: center;
+        grid-gap: 25px;
+        margin: 0 20px;
+    }
+    .about__title {
+        margin: 30px 0 20px 0;
+    }
+    .about__item {
+        transform: scale(1);
+        width: 100%;
+        height: 100%;
+    }
+    .item__img, .complex__img {
+        height: 160px;
+        width: 70%;
+        min-width: 100px;
+        margin: 0 auto;
+    }
+    .complex__img {
+        padding: 0 0 10px 0;
+    }
+    .complex__img .complex__first {
+        top: 40px;
+        left: -10px;
+    }
+    .complex__img .complex__second {
+        top: 15px;
+        left: 10px;
+    }
+    .item__text {
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 21px;
+        text-align: center;
+        color: #000000;
+    }
+}

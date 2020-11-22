@@ -1,0 +1,232 @@
+.yandexmap {
+    position: relative;
+    height: 720px;
+}
+.aside__address, .aside__phone {
+    color: white;
+    font-size: 22px;
+}
+
+.aside__address img, .aside__phone img {
+    margin: 0 20px 0 0;
+}
+
+.yandexmap aside{
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    top: 0;
+    width: 420px;
+    height: 460px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    background-color: #71A27C;
+    padding: 35px 45px;
+    box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.337);
+}
+
+.yandexmap aside > div {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.aside__icons div {
+   width: 33%;
+   padding: 15px 0;
+}
+
+.aside__icons img {
+    cursor: pointer;
+}
+.aside__call {
+    width: 100%;
+}
+.aside__btn {
+    height: 50px;
+    padding: 0 40px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(43, 0, 0, 0.25);
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    color: #71A27C;
+    align-content: center;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+#map {
+    height: 100%;
+}
+
+.to__top {
+    position: absolute;
+    z-index: 1090;
+    bottom: 42px;
+    left: 50px;
+    width: 104px;
+    height: 104px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #71A27C;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:active {
+        transform: scale(0.95)
+    }
+}
+
+@media (max-width: 1100px) {
+    .yandexmap aside{
+        width: 370px;
+        height: 400px;
+    }
+    .to__top {
+        width: 71px;
+        height: 71px;
+        left: 38px;
+        bottom: 29px;
+
+        img {
+            transform: scale(0.72);
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .yandexmap aside {
+        width: 295px;
+        height: 330px;
+        padding: 18px 25px;
+    }
+    .aside__address, .aside__phone {
+        color: white;
+        font-size: 21px;
+    }
+    .aside__btn {
+        height: 40px;
+        padding: 0 20px;
+        font-size: 20px;
+        line-height: 40px;
+    }
+    #map {
+        height: 550px;
+    }
+    .yandexmap {
+        height: 550px;
+    }
+}
+
+@media (max-width: 750px) {
+    .yandexmap {
+        height: auto;
+        img {
+            transform: scale(0.85);
+        }
+    }
+    #map {
+        height: 400px;
+    }
+    .yandexmap__map {
+        height: 450px;
+    }
+    .yandexmap aside{
+        height: auto;
+        position: static;
+        align-items: space-between;
+        width: 100%;
+        flex-flow: row wrap;
+        background-color: #71A27C;
+        padding: 0 35px;
+    }
+    .aside__address, .aside__phone  {
+        font-size: 18px;
+        width: 50%;
+        justify-content: center;
+        color: white;
+        img {
+            margin: 0 18px 0 0;
+        }
+    }
+    aside > div {
+        margin: 20px 0;
+    }
+    .aside__icons {
+       flex-flow: row nowrap;
+       justify-content: space-between;
+       width: 100%;
+       margin: 0 20px;
+    }
+    .aside__icons div {
+        width: auto;
+        margin: 0;
+    }
+    .aside__btn {
+        height: 48px;
+        padding: 0 30px;
+        font-size: 22px;
+        line-height: 48px;
+    }
+    .aside__call {
+        justify-content: center;
+    }
+    .to__top {
+        width: 60px;
+        height: 60px;
+        left: 18px;
+        bottom: 248px;
+        img {
+            transform: scale(0.6);
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .aside__address, .aside__phone {
+        font-size: 12px;
+    }
+    .aside__address img, .aside__phone img {
+        margin: 0 5px 0 0;
+        transform: scale(0.7);
+    }
+    .yandexmap aside {
+        padding: 0 10px;
+    }
+    aside > div {
+        margin: 12px 0;
+    }
+    .aside__icons {
+        transform: scale(0.9);
+        margin: 0;
+    }
+    .aside__btn {
+        height: 40px;
+        font-size: 18px;
+        line-height: 40px;
+        padding: 0 20px;
+    }
+    .yandexmap__map {
+        height: 320px;
+    }
+    #map {
+        height: 330px;
+    }
+    .to__top {
+        width: 47px;
+        height: 47px;
+        left: 18px;
+        bottom: 225px;
+        img {
+            transform: scale(0.46);
+        }
+    }
+}
