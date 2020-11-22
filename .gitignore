@@ -1,3 +1,6 @@
 # игнорирование папки npm пакетов
 node_modules
-
+# зависимости
+package-lock.json
+# таскраннер
+gulpfile.js

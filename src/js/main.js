@@ -1,9 +1,7 @@
 'use strict'
 
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
+
     ///popup map
 
     const popup = document.querySelector('.popup'),
