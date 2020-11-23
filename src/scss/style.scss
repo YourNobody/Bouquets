@@ -41,6 +41,10 @@ main .container {
     background-color: white;
 }
 
+[data-show="full"] {
+    cursor: pointer;
+}
+
 .btn:hover {
     background-color: #71A27C;
 }
@@ -76,5 +80,37 @@ main .container {
     .title {
         font-size: 24px;
         line-height: 29px;
+    }
+}
+
+
+.bgForImg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1200;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        position: absolute;
+        object-fit: contain;
+    }
+
+    div[data-type="close"] {
+        position: relative;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+
+        &:hover {
+            color: rgba(0,0,0,0.8);
+        }
     }
 }

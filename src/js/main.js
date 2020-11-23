@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const L = require('leaflet')
 
     const map = document.querySelector('#map')
-    const mymap = L.map(map).setView([53.90958758601346, 27.569377640467042], 13);
+    const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784], 13);
 
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
@@ -374,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA',
-        center: [53.90958758601346, 27.569377640467042],
+        center: [53.93023493974838, 27.588955400746784],
         zoomControl: false
     }).addTo(mymap)
 
@@ -389,13 +389,49 @@ document.addEventListener('DOMContentLoaded', () => {
         iconSize:  [55, 72], // size of the icon
     })
 
-    const marker = L.marker([53.90958758601346, 27.569377640467042], {icon: greenIcon}).addTo(mymap).bindPopup("Букеты");
+    const marker = L.marker([53.93023493974838, 27.588955400746784], {icon: greenIcon}).addTo(mymap).bindPopup("Букеты");
 
     ///TO TOP
     const toTop = document.querySelector('.to__top')
     toTop.addEventListener('click', () => {
         header.scrollIntoView({block: "start", behavior: "smooth"})
     })
+
+
+    const fullscreenImgs = document.querySelectorAll('[data-show="full"]')
+    fullscreenImgs.forEach(img => img.addEventListener('click', () => showFullScreenImg(img.src)))
+
+    function showFullScreenImg(src) {
+        const $div = document.createElement('div')
+        const $newImg = document.createElement('img')
+        const $close = document.createElement('div')
+        $div.classList.add('bgForImg')
+        $close.setAttribute('data-type', 'close')
+        $newImg.src = src
+        $div.append($newImg, $close)
+        document.body.append($div)
+        const { width, height } = window.getComputedStyle($newImg)
+        const { width: w, height: h} = window.getComputedStyle(document.body)
+        if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 2.5 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 2.5) {
+            $newImg.style.transform = 'scale(2)'
+            $newImg.style.transition = '0.25s ease-in'
+            $newImg.ontransitionend = () => {
+                $close.innerText = '╳'
+                $close.style.left = +width.replace(/\px/, '') - 40 + 'px';
+                $close.style.bottom = +height.replace(/\px/, '') - 33 + 'px';
+            }
+        } else {
+            $close.innerText = '╳'
+            $close.style.left = +width.replace(/\px/, '') / 2 - 40 + 'px';
+            $close.style.bottom = +height.replace(/\px/, '') / 2 - 33 + 'px';
+        }
+        $div.addEventListener('click', function(e) {
+            if (e.target === this || e.target === $close) {
+                this.remove()
+            }
+        })
+    }
+
 
     function getZero(num) {
         if (num < 10) return '0' + num
