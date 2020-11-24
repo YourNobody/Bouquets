@@ -84,7 +84,7 @@ function serve() {
   
     watch('src/**/*.html', series(html)).on('change', sync.reload)
     watch('src/scss/**/*.scss', series(scss)).on('change', sync.reload)
-    watch('src/js/**.js', series(js)).on('change', sync.reload)
+    watch('src/js/**/*.js', series(js)).on('change', sync.reload)
     watch('src/img/**/*.{png,jpg,jpeg,gif,webp,svg}', series(img)).on('change', sync.reload)
     watch('src/fonts/**/*.{eot,ttf,woff,woff2}', series(fonts)).on('change', sync.reload)
     watch('src/icons/**/*.{svg,png,gif}', series(icons)).on('change', sync.reload)

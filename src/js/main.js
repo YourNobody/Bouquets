@@ -1,49 +1,29 @@
 'use strict'
 
+import { Popup } from './templates/popup'
+import { checkTextInputs, checkCheckboxes, checkSetTimeInputs, scrolling, findTitle } from './templates/validform'
+import { setCalendar, setDaysOfPrevMonth, setDaysOfNextMonth, daysInMonth } from './templates/calendar'
+import { showDropMenu } from './templates/dropmenu'
+import { showFullScreenImg } from './templates/imgscreen' 
+import L from 'leaflet'
+
 document.addEventListener('DOMContentLoaded', () => {
-
-    ///popup map
-
-    const popup = document.querySelector('.popup'),
-          popupTrigger = document.querySelector('.aside__btn'),
-          popupClose = document.querySelector('.popup__close img'),
-          popupForm = document.querySelector('.popup__form'),
-          popupBook = popupForm.querySelector('.popup__form button'),
-          popupPhone = popupForm.querySelectorAll('.popup__form input')
-
     
-
-    popupTrigger.addEventListener('click', () => {
-        popupMod(popup, 'open')
-        
-        popup.addEventListener('click', (e) => {
-            if (e.target === popup || e.target == popupClose) {
-                popupMod(popup, 'close')
-            }
-        })
-        popupBook.addEventListener('click', () => {
-            popupMod(popup, 'close')
-        })
+    const popup = new Popup(templatePopup(), ['popup'])
+    popup.find('.aside__btn').addEventListener('click', () => Popup.popupMod(popup.html, 'open', '.yandexmap'))
+    popup.html.addEventListener('click', (e) => {
+        if (e.target === popup.html || e.target === popup.find('.popup__close img')) {
+            Popup.popupMod(popup.html, 'close')
+        }
     })
-
+    popup.find('.popup__form button').addEventListener('click', () => Popup.popupMod(popup.html, 'close'))
     document.onkeydown = (e) => {
-        if (e.code == 'Escape' && !popup.classList.contains('hide')) { 
-            popupMod('close')
+        if (e.code == 'Escape' && !popup.html.classList.contains('hide')) { 
+            Popup.popupMod(popup.html, 'close')
         }
     }
-
-    function popupMod(elem, method) {
-        if (method === 'open') {
-            elem.classList.remove('hide')
-        } else if (method === 'close') {
-            elem.classList.add('hide')
-        }
-    }
-
-    popupPhone.forEach(item => {
-        item.addEventListener('input', () => checkTextInputs(popupPhone))
-    })
-    popupForm.addEventListener('submit', (e) => {
+    popup.find('.popup__form input').addEventListener('input', () => checkTextInputs(popup.find('.popup__form input')))
+    popup.find('.popup__form').addEventListener('click', (e) => {
         e.preventDefault()
         checkTextInputs(popupPhone)
         if (!scrolling(popupPhone)) {
@@ -53,10 +33,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    function templatePopup() {
+        return `
+        <div class="popup__dialog">
+            <div class="popup__close">
+                <img src="icons/close.svg">
+            </div>
+            <div class="popup__title">
+                Заказать звонок
+            </div>
+            <div class="popup__text">
+                Оставьте свой номер телефона, и мы перезвоним Вам.
+            </div>
+            <div class="popup__form">
+                <form>
+                    <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
+                    <button type="submit">Заказать звонок</button>
+                </form>
+            </div>
+        </div>
+        `
+    }
+
     /// form check
 
     const form = document.querySelector('.formfield form'),
-          formSub = form.querySelector('.formfield__totalorder'),
           inputTextFields = form.querySelectorAll('#initials input '),
           inputCheckboxes = form.querySelectorAll('.checkbox'),
           inputRadioboxes = form.querySelectorAll('.radio'),
@@ -65,65 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inputTextFields.forEach(item => {
         item.addEventListener('input', () => checkTextInputs(inputTextFields))
     })
-
-    function checkTextInputs(inputs) {
-        inputs.forEach(item => {
-            if (item.getAttribute('type') == 'text' && item.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
-                item.style.borderBottomColor = 'red'
-            } else if (item.getAttribute('type') == 'phone' && item.value.match(/[^\d\+\(\)\-]/)) {
-                item.style.borderBottomColor = 'red'
-            } else {
-                item.style.borderBottomColor = 'black'
-            }
-        })
-    }
-    function checkCheckboxes(boxes) {
-        for (let index = 0; index < boxes.length; index++) {
-            if (boxes[index].checked) {
-                findTitle(boxes[index]).style.borderBottom = ''
-                return
-            }            
-        }
-        findTitle(boxes[0]).style.borderBottom = '1px solid red'
-    }
-    function checkSetTimeInputs(inputs) {
-        for (let index = 0; index < inputs.length; index++) {
-            if (inputs[index].value === 'Задать') {
-                if (inputs[index].getAttribute('id') === 'calendar') {
-                   inputs[index].style.borderBottomColor = 'red'
-                } else if (inputs[index].getAttribute('id') === 'clock'){
-                   inputs[index].style.borderBottomColor = 'red'
-                }
-                return 
-            }
-        }
-        inputs.forEach(input => input.style.borderBottomColor = '')
-    }
-
-    function scrolling(item) {
-        if (item.style.borderBottomColor === 'red') {
-            item.scrollIntoView({block: "center", behavior: "smooth"})
-            return false
-        } else if (findTitle(item).style.borderBottomColor === 'red') {
-            findTitle(item).scrollIntoView({block: "center", behavior: "smooth"})
-            return false
-        }
-        return true
-    }
-
-    function findTitle(item) {
-       try {
-            while (!item.classList.contains('title')) {
-                item = item.parentNode
-                Array.prototype.forEach.call(item.children, i => {
-                    if (i.classList.contains('title')) item = i
-                })
-            }
-            return item
-       } catch (err) {
-            return
-       }
-    }
 
     form.addEventListener('submit', function handler(e) {
         e.preventDefault()
@@ -150,27 +92,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     ///Drop menu
-    Date.prototype.daysInMonth = function(year, month) {
-		return 33 - new Date(year, month, 33).getDate();
-	};
+    function templateCalendar() {
+        return `
+            <div class="calendar__top">
+                <div class="calendar__left">
+                    <img src="icons/left.svg">
+                </div>
+                <div class="calendar__month">Октябрь</div>
+                <div class="calendar__right">
+                    <img src="icons/right.svg">
+                </div>
+            </div>
+            <ul class="calendar__days">
+            </ul>
+        `
+    }
 
-    const calendarTrigger = document.querySelector('.calendar__icon'),
-          clockTrigger = document.querySelector('.clock__icon'),
-          calendar = document.querySelector('.calendar'),
-          calendarLeft = document.querySelector('.calendar__left'),
-          calendarRight = document.querySelector('.calendar__right'),
-          clock = document.querySelector('.clock')
+    Date.prototype.daysInMonth = daysInMonth
 
-    calendarTrigger.addEventListener('click', (e) => {
-
-        if (calendar.classList.contains('hide')) {
-                popupMod(calendar, 'open')
+    const calendar = new Popup(templateCalendar(), ['calendar'])
+        
+    calendar.find('.calendar__icon').addEventListener('click', () => {
+        if (!document.querySelector('.calendar')) {
+            Popup.popupMod(calendar.html, 'open', '.formfield__delivery-date')
             let month = new Date().getMonth(),
                 year = new Date().getFullYear(),
                 countMonth = 0
 
-            setCalendar(month, year)
-            calendarLeft.addEventListener('click', () => {
+            setCalendar(calendar.html, month, year)
+            calendar.find('.calendar__left').addEventListener('click', () => {
                 if (countMonth) {
                     countMonth--
                     month--
@@ -178,33 +128,51 @@ document.addEventListener('DOMContentLoaded', () => {
                         month = 11
                         year--
                     }
-                    setCalendar(month, year)
+                    setCalendar(calendar.html, month, year)
                 } else {
-                setCalendar(month, year) 
+                    setCalendar(calendar.html, month, year)
                 }
-                
             })
-            calendarRight.addEventListener('click', () => {
+            calendar.find('.calendar__right').addEventListener('click', () => {
                 countMonth++
                 month++
                 if (month % 12 == 0) {
                     month = 0
                     year++
-                    setCalendar(month, year)
+                    setCalendar(calendar.html, month, year)
                 } else {
-                    setCalendar(month, year)
+                    setCalendar(calendar.html, month, year)
                 }
             })
+            calendar.find('.calendar__days').onclick = function(e) {
+                if (e.target.tagName == 'LI') {
+                    let inp = Array.prototype.find.call(inputSetTimeFields, i => {
+                        if (i.getAttribute('id') == 'calendar') return i
+                    })
+                    inp.value = `${getZero(e.target.innerText)}.${getZero(month + 1)}.${year}`
+                    Popup.popupMod(calendar.html, 'close')
+                }
+            } 
         } else {
-            popupMod(calendar, 'close')
+            Popup.popupMod(calendar.html, 'close')
         }
     })
 
-    clockTrigger.addEventListener('click', (e) => {
-        if (clock.classList.contains('hide')) {
-            popupMod(clock, 'open')
+    function templateCLock() {
+        return `
+            <div class="clock__item"><span data-from>9:00</span data-to>-<span>12:00</span></div>
+            <div class="clock__item"><span data-from>12:00</span data-to>-<span>15:00</span></div>
+            <div class="clock__item"><span data-from>15:00</span data-to>-<span>18:00</span></div>
+        `
+    }
 
-            clock.addEventListener('click', (e) => {
+    const clock = new Popup(templateCLock(), ['clock'])
+
+    clock.find('.clock__icon').addEventListener('click', (e) => {
+        if (!document.querySelector('.clock')) {
+            Popup.popupMod(clock.html, 'open', '.formfield__delivery-time')
+
+            clock.html.addEventListener('click', (e) => {
                 let target = e.target
                 while(!target.classList.contains('clock__item')) {
                     target = target.parentNode
@@ -213,58 +181,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (i.getAttribute('id') == 'clock') return i
                 })
                 inp.value = target.innerText
-                popupMod(clock, 'close')
+                Popup.popupMod(clock.html, 'close')
             })
         } else {
-            popupMod(clock, 'close')
+            Popup.popupMod(clock.html, 'close')
         }
     })
 
-    function setCalendar(month, year) {
-        const days = document.querySelector('.calendar__days')
-        const months = [
-            'Январь',
-            'Февраль',
-            'Март',
-            'Апрель',
-            'Май',
-            'Июнь',
-            'Июль',
-            'Август',
-            'Сентябрь',
-            'Октябрь',
-            'Ноябрь',
-            'Декабрь'
-        ]
-        document.querySelector('.calendar__month').innerText = months[month]
-        days.innerHTML = ''
-        let daysAmount = Date.prototype.daysInMonth(year, month)
-        let n = 0
-        for (let i = 0; i < daysAmount; i++) {
-            let li = document.createElement('li')
-            li.innerText += i + 1
-            days.append(li)
-            if (i == 6 + (n * 7)) {
-                li.style.color = 'red'
-                li.previousElementSibling.style.color= 'red'
-                n++
-            }
-        }
-        n = 0
-        days.onclick = function(e) {
-            if (e.target.tagName == 'LI') {
-                let inp = Array.prototype.find.call(inputSetTimeFields, i => {
-                    if (i.getAttribute('id') == 'calendar') return i
-                })
-                inp.value = `${getZero(e.target.innerText)}.${getZero(month + 1)}.${year}`
-                popupMod(calendar, 'close')
-            }
-        } 
+    function getZero(num) {
+        if (num < 10) return '0' + num
+        return num
     }
 
 ///header
 
-    function templateHTML() {
+    function templateMenu() {
         return `
             <div class="bg" data-set="bg"></div>
             <div class="close" data-set="close">×</div>
@@ -280,32 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const header = document.querySelector('header .container')
     const humTrigger = document.querySelector('.header__menu')
-    humTrigger.addEventListener('click', (e) => {showDropMenu(e); console.log(e.target)})
-
-    function createDropMenu() {
-        const div = document.createElement('div')
-        div.classList.add('drop')
-        div.innerHTML = templateHTML()
-        return div
-    }
-
-    function showDropMenu(e) {
-        let elem
-        if (!header.querySelector('.drop')) {
-            elem = createDropMenu()
-            header.append(elem)
-        } else {
-            elem = header.querySelector('.drop')
-            elem.classList.remove('hide')
-        }
-        elem.addEventListener('click', (e) => {
-            const { set } = e.target.dataset
-            console.log(e.target)
-            if (set === 'bg' || set === 'close' || e.target.tagName == 'A') {
-                elem.classList.add('hide')
-            }
-        })
-    }
+    humTrigger.addEventListener('click', () => showDropMenu(templateMenu(), ['drop'], 'header .container'))
 
     ///SLIDER
     const frame = document.querySelector('.reviews__main'),
@@ -357,14 +263,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
-    ///MAP
-
-    const L = require('leaflet')
+    ///MA
 
     const map = document.querySelector('#map')
     const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784], 13);
-
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -397,45 +299,8 @@ document.addEventListener('DOMContentLoaded', () => {
         header.scrollIntoView({block: "start", behavior: "smooth"})
     })
 
+    ///IMGS
 
     const fullscreenImgs = document.querySelectorAll('[data-show="full"]')
     fullscreenImgs.forEach(img => img.addEventListener('click', () => showFullScreenImg(img.src)))
-
-    function showFullScreenImg(src) {
-        const $div = document.createElement('div')
-        const $newImg = document.createElement('img')
-        const $close = document.createElement('div')
-        $div.classList.add('bgForImg')
-        $close.setAttribute('data-type', 'close')
-        $newImg.src = src
-        $div.append($newImg, $close)
-        document.body.append($div)
-        const { width, height } = window.getComputedStyle($newImg)
-        const { width: w, height: h} = window.getComputedStyle(document.body)
-        if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 2.5 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 2.5) {
-            $newImg.style.transform = 'scale(2)'
-            $newImg.style.transition = '0.25s ease-in'
-            $newImg.ontransitionend = () => {
-                $close.innerText = '╳'
-                $close.style.left = +width.replace(/\px/, '') - 40 + 'px';
-                $close.style.bottom = +height.replace(/\px/, '') - 33 + 'px';
-            }
-        } else {
-            $close.innerText = '╳'
-            $close.style.left = +width.replace(/\px/, '') / 2 - 40 + 'px';
-            $close.style.bottom = +height.replace(/\px/, '') / 2 - 33 + 'px';
-        }
-        $div.addEventListener('click', function(e) {
-            if (e.target === this || e.target === $close) {
-                this.remove()
-            }
-        })
-    }
-
-
-    function getZero(num) {
-        if (num < 10) return '0' + num
-        return num
-    }
-
 })
