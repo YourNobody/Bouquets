@@ -101,6 +101,7 @@ main .container {
         position: absolute;
         object-fit: contain;
         opacity: 0;
+        border-radius: 20px;
     }
 
     div[data-type="close"] {
