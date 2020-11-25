@@ -18441,8 +18441,22 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 100);
 
   slidesField.style.transition = 'transform 0.3s ease-out 0s';
+
+  function recursy(elem) {
+    var childs = elem.children ? _toConsumableArray(elem.children) : null;
+
+    while (childs) {
+      childs.forEach(function (item) {
+        return item.addEventListener('selectstart', function () {
+          return false;
+        });
+      });
+    }
+  } // recursy(slidesField)
+
+
   prev.addEventListener('click', function () {
-    moveToPrevious();
+    moveToPrev();
 
     prev.onselectstart = function () {
       return false;
@@ -18468,7 +18482,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  function moveToPrevious() {
+  function moveToPrev() {
     if (offset <= 0) {
       slideIndex = slides.length - 1;
       offset = slideWidth * (slides.length - 1);

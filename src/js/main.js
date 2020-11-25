@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
     slidesField.style.transition = 'transform 0.3s ease-out 0s'
 
     prev.addEventListener('click', () => {
-        moveToPrevious()
+        moveToPrev()
         prev.onselectstart = () => false
     })
     next.addEventListener('click', () => {
@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             slidesField.style.transform = `translateX(-${offset}px)`
         }
     }
-    function moveToPrevious() {
+    function moveToPrev() {
         if (offset <= 0 ) {
             slideIndex = slides.length - 1 
             offset = slideWidth * (slides.length - 1)

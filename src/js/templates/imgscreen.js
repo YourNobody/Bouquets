@@ -7,6 +7,7 @@ export function showFullScreenImg(src) {
     $div.style.overflow = 'hidden'
     $close.setAttribute('data-type', 'close')
     $newImg.src = src
+    $newImg.style.borderRadius = '20px'
 
     $div.append($newImg, $close)
     document.body.append($div)
