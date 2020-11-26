@@ -46,10 +46,6 @@ header .container {
     color: #424242;
 }
 
-.header__menu {
-    display: none;
-}
-
 @media (max-width: 1250px) {
     .header__logo {
         margin: 0 58px 0 0;
@@ -59,54 +55,6 @@ header .container {
     }
     .header__item {
         font-size: 19px;
-    }
-}
-
-
-.drop {
-    position: absolute;
-    display: none;
-    top: 0;
-    right: 0;
-    width: 40%;
-    z-index: 100;
-    box-shadow: -10px 3px 55px rgba(0, 0, 0, 0.118), -3px 10px 55px rgba(0, 0, 0, 0.111);
-    background-color: white;
-
-    .close {
-        position: absolute;
-        top: 0;
-        left: 12px;
-        font-size: 80px;
-        line-height: 65px;
-        font-weight: bold;
-    }
-
-    li {
-        text-align: end;
-        padding: 17px 30px 17px 40px;
-
-        a {
-            font-size: 22px;
-            font-weight: 500;
-        }
-    }
-
-    .bg {   
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: transparent;
-        z-index: -1;
-    }
-
-    .hide {
-        .bg {
-            display: none;
-        }
     }
 }
 

@@ -1,16 +1,18 @@
 'use strict'
 
+//импортируюет функционал с других файлов сюда
 import { Popup } from './templates/popup'
-import { checkTextInputs, checkCheckboxes, checkSetTimeInputs, scrolling, findTitle } from './templates/validform'
-import { setCalendar, setDaysOfPrevMonth, setDaysOfNextMonth, daysInMonth } from './templates/calendar'
+import { checkTextInputs, checkCheckboxes, checkSetTimeInputs, scrolling } from './templates/validform'
+import { setCalendar, daysInMonth } from './templates/calendar'
 import { showDropMenu } from './templates/dropmenu'
 import { showFullScreenImg } from './templates/imgscreen' 
 import L from 'leaflet'
 
+//навешиваюию обработчик события который выполнится когда дом структура будет загружена
 document.addEventListener('DOMContentLoaded', () => {
-    
+    //создаю экземпляр класа всплывающего окна
     const popup = new Popup(templatePopup(), ['popup'])
-    popup.find('.aside__btn').addEventListener('click', () => Popup.popupMod(popup.html, 'open', '.yandexmap'))
+    popup.find('.aside__btn').addEventListener('click', () => Popup.popupMod(popup.html, 'open', '.leaf'))
     popup.html.addEventListener('click', (e) => {
         if (e.target === popup.html || e.target === popup.find('.popup__close img')) {
             Popup.popupMod(popup.html, 'close')
@@ -35,23 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function templatePopup() {
         return `
-        <div class="popup__dialog">
-            <div class="popup__close">
-                <img src="icons/close.svg">
+            <div class="popup__dialog">
+                <div class="popup__close">
+                    <img src="icons/close.svg">
+                </div>
+                <div class="popup__title">
+                    Заказать звонок
+                </div>
+                <div class="popup__text">
+                    Оставьте свой номер телефона, и мы перезвоним Вам.
+                </div>
+                <div class="popup__form">
+                    <form>
+                        <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
+                        <button type="submit">Заказать звонок</button>
+                    </form>
+                </div>
             </div>
-            <div class="popup__title">
-                Заказать звонок
-            </div>
-            <div class="popup__text">
-                Оставьте свой номер телефона, и мы перезвоним Вам.
-            </div>
-            <div class="popup__form">
-                <form>
-                    <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
-                    <button type="submit">Заказать звонок</button>
-                </form>
-            </div>
-        </div>
         `
     }
 
@@ -61,12 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
           inputTextFields = form.querySelectorAll('#initials input '),
           inputCheckboxes = form.querySelectorAll('.checkbox'),
           inputRadioboxes = form.querySelectorAll('.radio'),
-          inputSetTimeFields = form.querySelectorAll('.formfield__delivery input')
+          inputSetTimeFields = form.querySelectorAll('.formfield__delivery input'),
+          inputPopup = document.querySelectorAll('#phonePopup')
+
 
     inputTextFields.forEach(item => {
         item.addEventListener('input', () => checkTextInputs(inputTextFields))
     })
 
+    //при клике на кнопку заказать срабатывает событие 'submit', дальше идет проверка на валидность 
     form.addEventListener('submit', function handler(e) {
         e.preventDefault()
         checkCheckboxes(inputCheckboxes)
@@ -76,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ...inputTextFields,
             ...inputCheckboxes,
             ...inputRadioboxes,
-            ...inputSetTimeFields
+            ...inputSetTimeFields,
+            ...inputPopup
         ]
         let count = 0
         for (let i = 0; i < inputs.length; i++) {
@@ -108,8 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
 
+    //создаю в прототипе объекта даты функци. получения дней в месяце
     Date.prototype.daysInMonth = daysInMonth
 
+    //создаю экзмеляр класса
     const calendar = new Popup(templateCalendar(), ['calendar'])
         
     calendar.find('.calendar__icon').addEventListener('click', () => {
@@ -166,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
 
+    //создаю экземпляр класса
     const clock = new Popup(templateCLock(), ['clock'])
 
     clock.find('.clock__icon').addEventListener('click', (e) => {
@@ -188,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    //если число меньше 10 то для правильного отображения даты будет добавлен нуль
     function getZero(num) {
         if (num < 10) return '0' + num
         return num
@@ -209,6 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
     
+
+    ///выпадающее меню
     const header = document.querySelector('header .container')
     const humTrigger = document.querySelector('.header__menu')
     humTrigger.addEventListener('click', () => showDropMenu(templateMenu(), ['drop'], 'header .container'))
@@ -263,10 +275,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    ///MA
+    ///MAP
 
     const map = document.querySelector('#map')
-    const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784], 13);
+    const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784]);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -276,15 +288,13 @@ document.addEventListener('DOMContentLoaded', () => {
         tileSize: 512,
         zoomOffset: -1,
         accessToken: 'pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA',
-        center: [53.93023493974838, 27.588955400746784],
-        zoomControl: false
+        center: [53.93023493974838, 27.588955400746784]
     }).addTo(mymap)
 
-    mymap.touchZoom.disable();
-    mymap.doubleClickZoom.disable();
-    mymap.scrollWheelZoom.disable();
-    mymap.boxZoom.disable();
-    mymap.keyboard.disable();
+    mymap.touchZoom.disable()
+    mymap.scrollWheelZoom.disable()
+    mymap.boxZoom.disable()
+    mymap.keyboard.disable()
 
     const greenIcon = L.icon({
         iconUrl: 'icons/mapMarker.svg',
@@ -296,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ///TO TOP
     const toTop = document.querySelector('.to__top')
     toTop.addEventListener('click', () => {
-        header.scrollIntoView({block: "start", behavior: "smooth"})
+        header.scrollIntoView({ block: "start", behavior: "smooth" })
     })
 
     ///IMGS

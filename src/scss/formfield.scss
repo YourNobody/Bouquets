@@ -40,6 +40,7 @@
 .checkbox{
     display: none;
 }
+
 .checkbox + label{
     display: block;
     min-width: 34px;
@@ -123,7 +124,7 @@
 .radio:checked + label:before{
     content: url(../icons/ellipse.svg);
     position: absolute;
-    transform: translate(-50%, 60%);
+    transform: translate(-49%, 68%);
 }
 
 .formfield__delivery {

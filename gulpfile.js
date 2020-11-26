@@ -159,14 +159,6 @@ function serve() {
 exports.build = series(clearB, htmlB, scssB, jsB, imgB, fontsB, iconsB)
 exports.dist = series(clear, html, scss, js, img, fonts, icons, serve)
 exports.clear = clear
-exports.html = html
-exports.scss = scss
-exports.js = js
-exports.img = img
-exports.fonts = fonts
-exports.icons = icons
-
-
 
 
 
