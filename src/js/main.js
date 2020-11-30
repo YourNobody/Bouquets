@@ -3,7 +3,7 @@
 //импортируюет функционал карты
 import L from 'leaflet'
 
-//навешиваюию обработчик события который выполнится когда дом структура будет загружена
+//данное событие срабатывает когда DOM-дерево загружено
 document.addEventListener('DOMContentLoaded', () => {
     //создаю всплывающее окно
     const $dropMenuTrigger = document.querySelector('.header__menu')
@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toTop = document.querySelector('.to__top')
     toTop.addEventListener('click', () => {
-        document.querySelector('.header').scrollIntoView({ block: "start", behavior: "smooth" })
+        document.querySelector('header').scrollIntoView({ block: "start", behavior: "smooth" })
     })
 
     ///IMGS
