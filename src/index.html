@@ -27,6 +27,17 @@
                 <li><a href="#contacts" class="header__item">Контакты</a></li>
             </ul>   
             <div class="header__menu" data-set="closed"></div>
+            <div class="drop hide">
+                <div class="bg" data-set="bg"></div>
+                <div class="close" data-set="close">×</div>
+                <ul>
+                    <li><a href="#about" class="header__item">О нас</a></li>
+                    <li><a href="#bouquets" class="header__item">Букеты</a></li>
+                    <li><a href="#reviews" class="header__item">Отзывы</a></li>
+                    <li><a href="#payment" class="header__item">Доставка и оплата</a></li>
+                    <li><a href="#contacts" class="header__item">Контакты</a></li>
+                </ul>
+            </div>
         </div>
     </header>
     <main>
@@ -325,6 +336,19 @@
                                         <div class="calendar__icon">
                                             <img src="icons/calendar.svg">
                                         </div>
+                                    </div>
+                                    <div class="calendar hide">
+                                        <div class="calendar__top">
+                                            <div class="calendar__left">
+                                                <img src="icons/left.svg">
+                                            </div>
+                                            <div class="calendar__month">Октябрь</div>
+                                            <div class="calendar__right">
+                                                <img src="icons/right.svg">
+                                            </div>
+                                        </div>
+                                        <ul class="calendar__days">
+                                        </ul>
                                     </div> 
                                 </div>
                                 <div class="formfield__delivery-time">
@@ -335,6 +359,9 @@
                                         <input type="text" value="Задать" name="clock" id="clock" data-set="settime" required
                                             readonly>
                                         <div class="clock__icon">+</div>
+                                        <div class="clock__item hide"><span data-from>9:00</span data-to>-<span>12:00</span></div>
+                                        <div class="clock__item"><span data-from>12:00</span data-to>-<span>15:00</span></div>
+                                        <div class="clock__item"><span data-from>15:00</span data-to>-<span>18:00</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -388,6 +415,23 @@
                 </aside>
                 <div class="to__top">
                     <img src="icons/Vector 3.svg">
+                </div>
+                <div class="popup__dialog hide">
+                    <div class="popup__close">
+                        <img src="icons/close.svg">
+                    </div>
+                    <div class="popup__title">
+                        Заказать звонок
+                    </div>
+                    <div class="popup__text">
+                        Оставьте свой номер телефона, и мы перезвоним Вам.
+                    </div>
+                    <div class="popup__form">
+                        <form>
+                            <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
+                            <button type="submit">Заказать звонок</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

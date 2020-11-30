@@ -11,51 +11,7 @@ import L from 'leaflet'
 //навешиваюию обработчик события который выполнится когда дом структура будет загружена
 document.addEventListener('DOMContentLoaded', () => {
     //создаю экземпляр класа всплывающего окна
-    const popup = new Popup(templatePopup(), ['popup'])
-    popup.find('.aside__btn').addEventListener('click', () => Popup.popupMod(popup.html, 'open', '.leaf'))
-    popup.html.addEventListener('click', (e) => {
-        if (e.target === popup.html || e.target === popup.find('.popup__close img')) {
-            Popup.popupMod(popup.html, 'close')
-        }
-    })
-    popup.find('.popup__form button').addEventListener('click', () => Popup.popupMod(popup.html, 'close'))
-    document.onkeydown = (e) => {
-        if (e.code == 'Escape' && !popup.html.classList.contains('hide')) { 
-            Popup.popupMod(popup.html, 'close')
-        }
-    }
-    popup.find('.popup__form input').addEventListener('input', () => checkTextInputs(popup.find('.popup__form input')))
-    popup.find('.popup__form').addEventListener('click', (e) => {
-        e.preventDefault()
-        checkTextInputs(popupPhone)
-        if (!scrolling(popupPhone)) {
-            alert('Fill the form correctly!')
-        } else {
-            alert('Form is valid!')
-        }
-    })
-
-    function templatePopup() {
-        return `
-            <div class="popup__dialog">
-                <div class="popup__close">
-                    <img src="icons/close.svg">
-                </div>
-                <div class="popup__title">
-                    Заказать звонок
-                </div>
-                <div class="popup__text">
-                    Оставьте свой номер телефона, и мы перезвоним Вам.
-                </div>
-                <div class="popup__form">
-                    <form>
-                        <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
-                        <button type="submit">Заказать звонок</button>
-                    </form>
-                </div>
-            </div>
-        `
-    }
+    
 
     /// form check
 
@@ -98,22 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     ///Drop menu
-    function templateCalendar() {
-        return `
-            <div class="calendar__top">
-                <div class="calendar__left">
-                    <img src="icons/left.svg">
-                </div>
-                <div class="calendar__month">Октябрь</div>
-                <div class="calendar__right">
-                    <img src="icons/right.svg">
-                </div>
-            </div>
-            <ul class="calendar__days">
-            </ul>
-        `
-    }
-
     //создаю в прототипе объекта даты функци. получения дней в месяце
     Date.prototype.daysInMonth = daysInMonth
 
@@ -166,13 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    function templateCLock() {
-        return `
-            <div class="clock__item"><span data-from>9:00</span data-to>-<span>12:00</span></div>
-            <div class="clock__item"><span data-from>12:00</span data-to>-<span>15:00</span></div>
-            <div class="clock__item"><span data-from>15:00</span data-to>-<span>18:00</span></div>
-        `
-    }
 
     //создаю экземпляр класса
     const clock = new Popup(templateCLock(), ['clock'])
@@ -204,21 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 ///header
-
-    function templateMenu() {
-        return `
-            <div class="bg" data-set="bg"></div>
-            <div class="close" data-set="close">×</div>
-            <ul>
-                <li><a href="#about" class="header__item">О нас</a></li>
-                <li><a href="#bouquets" class="header__item">Букеты</a></li>
-                <li><a href="#reviews" class="header__item">Отзывы</a></li>
-                <li><a href="#payment" class="header__item">Доставка и оплата</a></li>
-                <li><a href="#contacts" class="header__item">Контакты</a></li>
-            </ul>
-        `
-    }
-    
 
     ///выпадающее меню
     const header = document.querySelector('header .container')
