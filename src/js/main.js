@@ -5,6 +5,7 @@ import L from 'leaflet'
 
 //данное событие срабатывает когда DOM-дерево загружено
 document.addEventListener('DOMContentLoaded', () => {
+
     //создаю всплывающее окно
     const $dropMenuTrigger = document.querySelector('.header__menu')
     const $dropMenu = document.querySelector('.drop')
@@ -12,14 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     $dropMenuTrigger.addEventListener('click', () => popupToggle($dropMenu, 'open'))
 
     $dropMenu.addEventListener('click', (e) => {
-        const { set } = e.target.dataset
+        const set = e.target.dataset.set
         if (set === 'bg' || set === 'close') popupToggle($dropMenu, 'close')
         else if (e.target.tagName === 'A') popupToggle($dropMenu, 'close')
     })
 
+    // закрывает / открывает всплывающее окно
     function popupToggle(elem, method) {
         if (!elem) return 'Element is not defined'
-        
         if (method === 'open') elem.classList.remove('hide')
         else if (method === 'close') elem.classList.add('hide')
         else return 'Choose the correct method'
@@ -27,27 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const $popup = document.querySelector('.popup'),
           $popupTrigger = document.querySelector('.aside__btn'),
-          $popupClose = document.querySelector('.popup__close img')
+          $popupClose = $popup.querySelector('.popup__close img')
 
     $popupTrigger.addEventListener('click', () => {
         popupToggle($popup, 'open')
 
-        document.onkeydown = (e) => {
+        //keydown - событие на клавиатуре
+        document.addEventListener('keydown', (e) => {
             if (e.code == 'Escape' && !$popup.classList.contains('hide')) { 
                 popupToggle($popup, 'close')
             }
-        }
-    
+        })
     })
 
     $popup.addEventListener('click', (e) => {
-        if (e.target === $popup || e.target == $popupClose) {
+        if (e.target === $popup || e.target === $popupClose) {
             popupToggle($popup, 'close')
         }
     })
 
-    /// form check
 
+    /// form check
     const formMain = document.querySelector('.formfield form'),
           formPopup = document.querySelector('.popup__form form'),
           inputTextFields = formMain.querySelectorAll('#initials input '),
@@ -65,19 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('input', () => checkTextInputs(item))
     })
 
-    //при клике на кнопку заказать срабатывает событие 'submit', дальше идет проверка на валидность 
-
+    //проверяет текстовые введенныые данные на соответствие и в случае несоответствия сделает границу красной 
     function checkTextInputs(input) {
         if (input.getAttribute('type') === 'text' && input.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
             input.style.borderBottomColor = 'red'
         } else if (input.getAttribute('type') === 'phone' && input.value.match(/[^\d\+\(\)\-]/)) {
-            console.log('fffff')
-            console.log(input)
             input.style.borderBottomColor = 'red'
         } else {
             input.style.borderBottomColor = 'black'
         }
     }
+
+    //проверяет установлен ли маркер в инпутах типа радио и чекбокс
     function checkCheckboxes(boxes) {
         for (let index = 0; index < boxes.length; index++) {
             if (boxes[index].checked) {
@@ -87,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         findTitle(boxes[0]).style.borderBottom = '1px solid red'
     }
+
+    //проверяет заданы ли данные в дате (календарь, время дня)
     function checkSetTimeInputs(inputs) {
         let count = 0
         for (let index = 0; index < inputs.length; index++) {
@@ -100,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
         inputs.forEach(item => item.style.borderBottomColor = 'black') 
     }
     
+    //проверяет на наличие индикатора (красное подчеркивание)
+    //если нашло индикатор то вернет false и проскролит до некорректно заполненного инпута
+    //если не нашло индикатор то вернет true и все нормально (инпуты заполнены верно)
     function scrolling(item) {
         if (item.style.borderBottomColor === 'red') {
             item.scrollIntoView({block: "center", behavior: "smooth"})
@@ -111,6 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return true
     }
     
+    //с помощию цикла ищет название блока (class = "... title ...")
+    //если найдет ото вернет блок с названием
+    //если не найдет то вернет documnet.body
     function findTitle(item) {
        try {
             while (!item.classList.contains('title')) {
@@ -170,8 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 
-
-    ///Drop menu
     //создаю в прототипе объекта даты функци. получения дней в месяце
     Date.prototype.daysInMonth = function(year, month) {
 		return 33 - new Date(year, month, 33).getDate()
@@ -247,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
+    //рендерю дни и название месяца в календаре 
     function setCalendar(month, year) {
         const days = document.querySelector('.calendar__days')
         const months = [
@@ -277,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 n++
             }
         }
-        days.onclick = function(e) {
+        days.addEventListener('click', (e) => {
             if (e.target.tagName === 'LI') {
                 let inp = Array.prototype.find.call(inputSetTimeFields, i => {
                     if (i.getAttribute('id') === 'calendar') return i
@@ -285,9 +292,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 inp.value = `${getZero(e.target.innerText)}.${getZero(month + 1)}.${year}`
                 popupToggle($calendar, 'close')
             }
-        } 
+        })
     }
 
+    //добавляет 0 для чисел меньше 10
     function getZero(num) {
         if (num < 10) return '0' + num
         return num
@@ -306,9 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideWidth, slides = document.querySelectorAll('.reviews__item')
 
     const int = setInterval(() => {
-        slideWidth = +getComputedStyle(slides[0]).width.match(/\d+/)[0]
+        slideWidth = +getComputedStyle(slides[0]).width.replace(/px/, '')
         frame.style.width = slideWidth + 'px'
-    }, 100)
+    }, 50)
     
     slidesField.style.transition = 'transform 0.3s ease-out 0s'
 
@@ -321,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
         next.onselectstart = () => false
     })
 
+    //осуществляет прокрутку слайдов вперед
     function moveToNext() {
         if (offset >= slideWidth * (slides.length - 1)) {
             offset = 0
@@ -332,6 +341,8 @@ document.addEventListener('DOMContentLoaded', () => {
             slidesField.style.transform = `translateX(-${offset}px)`
         }
     }
+
+    //осуществляет прокрутку слайдов назад
     function moveToPrev() {
         if (offset <= 0 ) {
             slideIndex = slides.length - 1 
@@ -384,6 +395,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullscreenImgs = document.querySelectorAll('[data-show="full"]')
     fullscreenImgs.forEach(img => img.addEventListener('click', () => showFullScreenImg(img.src)))
 
+    //увеличивает изображение относительно размеров окна
+    //и уменьшеает если значение больше значения окна
     function showFullScreenImg(src) {
         const $div = document.createElement('div')
         const $newImg = document.createElement('img')
@@ -396,9 +409,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
         $div.append($newImg, $close)  
         document.body.append($div)
-    
+
         const { width, height } = window.getComputedStyle($newImg)
-        const { width: w, height: h} = window.getComputedStyle(document.body)
+        const { width: w, height: h } = window.getComputedStyle(document.body)
     
         let factor
 
@@ -430,6 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
     
+    //изменяет размеры изображения и двигает крестик относительно размеров изображения
     function changeSize($newImg, $close, width, height, factor = 1) {
         $newImg.style.transform = `scale(${factor})`
         $newImg.style.transition = '0.25s ease-in'

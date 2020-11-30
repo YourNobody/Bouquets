@@ -18232,7 +18232,7 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
- //навешиваюию обработчик события который выполнится когда дом структура будет загружена
+ //данное событие срабатывает когда DOM-дерево загружено
 
 document.addEventListener('DOMContentLoaded', function () {
   //создаю всплывающее окно
@@ -18244,7 +18244,7 @@ document.addEventListener('DOMContentLoaded', function () {
   $dropMenu.addEventListener('click', function (e) {
     var set = e.target.dataset.set;
     if (set === 'bg' || set === 'close') popupToggle($dropMenu, 'close');else if (e.target.tagName === 'A') popupToggle($dropMenu, 'close');
-  });
+  }); // закрывает / открывает всплывающее окно
 
   function popupToggle(elem, method) {
     if (!elem) return 'Element is not defined';
@@ -18253,18 +18253,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var $popup = document.querySelector('.popup'),
       $popupTrigger = document.querySelector('.aside__btn'),
-      $popupClose = document.querySelector('.popup__close img');
+      $popupClose = $popup.querySelector('.popup__close img');
   $popupTrigger.addEventListener('click', function () {
-    popupToggle($popup, 'open');
+    popupToggle($popup, 'open'); //keydown - событие на клавиатуре
 
-    document.onkeydown = function (e) {
+    document.addEventListener('keydown', function (e) {
       if (e.code == 'Escape' && !$popup.classList.contains('hide')) {
         popupToggle($popup, 'close');
       }
-    };
+    });
   });
   $popup.addEventListener('click', function (e) {
-    if (e.target === $popup || e.target == $popupClose) {
+    if (e.target === $popup || e.target === $popupClose) {
       popupToggle($popup, 'close');
     }
   }); /// form check
@@ -18285,19 +18285,18 @@ document.addEventListener('DOMContentLoaded', function () {
     item.addEventListener('input', function () {
       return checkTextInputs(item);
     });
-  }); //при клике на кнопку заказать срабатывает событие 'submit', дальше идет проверка на валидность 
+  }); //проверяет текстовые введенныые данные на соответствие и в случае несоответствия сделает границу красной 
 
   function checkTextInputs(input) {
     if (input.getAttribute('type') === 'text' && input.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
       input.style.borderBottomColor = 'red';
     } else if (input.getAttribute('type') === 'phone' && input.value.match(/[^\d\+\(\)\-]/)) {
-      console.log('fffff');
-      console.log(input);
       input.style.borderBottomColor = 'red';
     } else {
       input.style.borderBottomColor = 'black';
     }
-  }
+  } //проверяет установлен ли маркер в инпутах типа радио и чекбокс
+
 
   function checkCheckboxes(boxes) {
     for (var index = 0; index < boxes.length; index++) {
@@ -18308,7 +18307,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     findTitle(boxes[0]).style.borderBottom = '1px solid red';
-  }
+  } //проверяет заданы ли данные в дате (календарь, время дня)
+
 
   function checkSetTimeInputs(inputs) {
     var count = 0;
@@ -18326,7 +18326,10 @@ document.addEventListener('DOMContentLoaded', function () {
     inputs.forEach(function (item) {
       return item.style.borderBottomColor = 'black';
     });
-  }
+  } //проверяет на наличие индикатора (красное подчеркивание)
+  //если нашло индикатор то вернет false и проскролит до некорректно заполненного инпута
+  //если не нашло индикатор то вернет true и все нормально (инпуты заполнены верно)
+
 
   function scrolling(item) {
     if (item.style.borderBottomColor === 'red') {
@@ -18344,7 +18347,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     return true;
-  }
+  } //с помощию цикла ищет название блока (class = "... title ...")
+  //если найдет ото вернет блок с названием
+  //если не найдет то вернет documnet.body
+
 
   function findTitle(item) {
     try {
@@ -18403,8 +18409,7 @@ document.addEventListener('DOMContentLoaded', function () {
       popupToggle($popup, 'close');
       e.target.reset();
     }
-  }); ///Drop menu
-  //создаю в прототипе объекта даты функци. получения дней в месяце
+  }); //создаю в прототипе объекта даты функци. получения дней в месяце
 
   Date.prototype.daysInMonth = function (year, month) {
     return 33 - new Date(year, month, 33).getDate();
@@ -18478,7 +18483,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       popupToggle($clock, 'close');
     }
-  });
+  }); //рендерю дни и название месяца в календаре 
 
   function setCalendar(month, year) {
     var days = document.querySelector('.calendar__days');
@@ -18500,7 +18505,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    days.onclick = function (e) {
+    days.addEventListener('click', function (e) {
       if (e.target.tagName === 'LI') {
         var inp = Array.prototype.find.call(inputSetTimeFields, function (i) {
           if (i.getAttribute('id') === 'calendar') return i;
@@ -18508,8 +18513,9 @@ document.addEventListener('DOMContentLoaded', function () {
         inp.value = "".concat(getZero(e.target.innerText), ".").concat(getZero(month + 1), ".").concat(year);
         popupToggle($calendar, 'close');
       }
-    };
-  }
+    });
+  } //добавляет 0 для чисел меньше 10
+
 
   function getZero(num) {
     if (num < 10) return '0' + num;
@@ -18527,9 +18533,9 @@ document.addEventListener('DOMContentLoaded', function () {
       slides = document.querySelectorAll('.reviews__item');
 
   var _int = setInterval(function () {
-    slideWidth = +getComputedStyle(slides[0]).width.match(/\d+/)[0];
+    slideWidth = +getComputedStyle(slides[0]).width.replace(/px/, '');
     frame.style.width = slideWidth + 'px';
-  }, 100);
+  }, 50);
 
   slidesField.style.transition = 'transform 0.3s ease-out 0s';
   prev.addEventListener('click', function () {
@@ -18545,7 +18551,7 @@ document.addEventListener('DOMContentLoaded', function () {
     next.onselectstart = function () {
       return false;
     };
-  });
+  }); //осуществляет прокрутку слайдов вперед
 
   function moveToNext() {
     if (offset >= slideWidth * (slides.length - 1)) {
@@ -18557,7 +18563,8 @@ document.addEventListener('DOMContentLoaded', function () {
       slideIndex++;
       slidesField.style.transform = "translateX(-".concat(offset, "px)");
     }
-  }
+  } //осуществляет прокрутку слайдов назад
+
 
   function moveToPrev() {
     if (offset <= 0) {
@@ -18599,7 +18606,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var toTop = document.querySelector('.to__top');
   toTop.addEventListener('click', function () {
-    document.querySelector('.header').scrollIntoView({
+    document.querySelector('header').scrollIntoView({
       block: "start",
       behavior: "smooth"
     });
@@ -18610,7 +18617,8 @@ document.addEventListener('DOMContentLoaded', function () {
     return img.addEventListener('click', function () {
       return showFullScreenImg(img.src);
     });
-  });
+  }); //увеличивает изображение относительно размеров окна
+  //и уменьшеает если значение больше значения окна
 
   function showFullScreenImg(src) {
     var $div = document.createElement('div');
@@ -18660,7 +18668,8 @@ document.addEventListener('DOMContentLoaded', function () {
         this.remove();
       }
     });
-  }
+  } //изменяет размеры изображения и двигает крестик относительно размеров изображения
+
 
   function changeSize($newImg, $close, width, height) {
     var factor = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;

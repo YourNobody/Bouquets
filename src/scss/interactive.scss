@@ -46,6 +46,22 @@
     }
 }
 
+@media (max-width: 650px) {
+    .drop {
+        width: 100%;
+        box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.624);
+        .close {
+            left: inherit;
+            right: 12px;
+            margin: 0 15px 0 0;
+        }
+        li {
+            text-align: center;
+            padding: 17px 120px;
+        }
+    }
+}
+
 
 .bgForImg {
     position: fixed;
