@@ -359,7 +359,9 @@
                                         <input type="text" value="Задать" name="clock" id="clock" data-set="settime" required
                                             readonly>
                                         <div class="clock__icon">+</div>
-                                        <div class="clock__item hide"><span data-from>9:00</span data-to>-<span>12:00</span></div>
+                                    </div>
+                                    <div class="clock hide">
+                                        <div class="clock__item"><span data-from>9:00</span data-to>-<span>12:00</span></div>
                                         <div class="clock__item"><span data-from>12:00</span data-to>-<span>15:00</span></div>
                                         <div class="clock__item"><span data-from>15:00</span data-to>-<span>18:00</span></div>
                                     </div>
@@ -416,23 +418,25 @@
                 <div class="to__top">
                     <img src="icons/Vector 3.svg">
                 </div>
-                <div class="popup__dialog hide">
-                    <div class="popup__close">
-                        <img src="icons/close.svg">
+                <div class="popup hide"s>
+                    <div class="popup__dialog">
+                        <div class="popup__close">
+                            <img src="icons/close.svg">
+                        </div>
+                        <div class="popup__title">
+                            Заказать звонок
+                        </div>
+                        <div class="popup__text">
+                            Оставьте свой номер телефона, и мы перезвоним Вам.
+                        </div>
+                        <div class="popup__form">
+                            <form>
+                                <input type="phone" name="phonePopup" id="phone-popup" required placeholder="Телефон*">
+                                <button type="submit">Заказать звонок</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="popup__title">
-                        Заказать звонок
-                    </div>
-                    <div class="popup__text">
-                        Оставьте свой номер телефона, и мы перезвоним Вам.
-                    </div>
-                    <div class="popup__form">
-                        <form>
-                            <input type="phone" name="phonePopup" id="phonePopup" required placeholder="Телефон*">
-                            <button type="submit">Заказать звонок</button>
-                        </form>
-                    </div>
-                </div>
+                </div clas>
             </div>
         </div>
     </main>

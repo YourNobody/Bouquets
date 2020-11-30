@@ -3207,26 +3207,6 @@ if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
 
 /***/ }),
 
-/***/ "./node_modules/core-js/modules/es.object.define-property.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/core-js/modules/es.object.define-property.js ***!
-  \*******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $ = __webpack_require__(/*! ../internals/export */ "./node_modules/core-js/internals/export.js");
-var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
-var objectDefinePropertyModile = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js");
-
-// `Object.defineProperty` method
-// https://tc39.github.io/ecma262/#sec-object.defineproperty
-$({ target: 'Object', stat: true, forced: !DESCRIPTORS, sham: !DESCRIPTORS }, {
-  defineProperty: objectDefinePropertyModile.f
-});
-
-
-/***/ }),
-
 /***/ "./node_modules/core-js/modules/es.object.to-string.js":
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es.object.to-string.js ***!
@@ -18205,19 +18185,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! core-js/modules/es.string.match */ "./node_modules/core-js/modules/es.string.match.js");
 /* harmony import */ var core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
-/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/web.timers */ "./node_modules/core-js/modules/web.timers.js");
-/* harmony import */ var core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var _templates_popup__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./templates/popup */ "./src/js/templates/popup.js");
-/* harmony import */ var _templates_validform__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./templates/validform */ "./src/js/templates/validform.js");
-/* harmony import */ var _templates_calendar__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./templates/calendar */ "./src/js/templates/calendar.js");
-/* harmony import */ var _templates_dropmenu__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./templates/dropmenu */ "./src/js/templates/dropmenu.js");
-/* harmony import */ var _templates_imgscreen__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./templates/imgscreen */ "./src/js/templates/imgscreen.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_26___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_26__);
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! core-js/modules/web.timers */ "./node_modules/core-js/modules/web.timers.js");
+/* harmony import */ var core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_timers__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_22__);
+ //импортируюет функционал карты
 
 
 
@@ -18254,71 +18232,145 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToAr
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-
-
-
-
-
+ //навешиваюию обработчик события который выполнится когда дом структура будет загружена
 
 document.addEventListener('DOMContentLoaded', function () {
-  var popup = new _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"](templatePopup(), ['popup']);
-  popup.find('.aside__btn').addEventListener('click', function () {
-    return _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(popup.html, 'open', '.yandexmap');
+  //создаю всплывающее окно
+  var $dropMenuTrigger = document.querySelector('.header__menu');
+  var $dropMenu = document.querySelector('.drop');
+  $dropMenuTrigger.addEventListener('click', function () {
+    return popupToggle($dropMenu, 'open');
   });
-  popup.html.addEventListener('click', function (e) {
-    if (e.target === popup.html || e.target === popup.find('.popup__close img')) {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(popup.html, 'close');
+  $dropMenu.addEventListener('click', function (e) {
+    var set = e.target.dataset.set;
+    if (set === 'bg' || set === 'close') popupToggle($dropMenu, 'close');else if (e.target.tagName === 'A') popupToggle($dropMenu, 'close');
+  });
+
+  function popupToggle(elem, method) {
+    if (!elem) return 'Element is not defined';
+    if (method === 'open') elem.classList.remove('hide');else if (method === 'close') elem.classList.add('hide');else return 'Choose the correct method';
+  }
+
+  var $popup = document.querySelector('.popup'),
+      $popupTrigger = document.querySelector('.aside__btn'),
+      $popupClose = document.querySelector('.popup__close img');
+  $popupTrigger.addEventListener('click', function () {
+    popupToggle($popup, 'open');
+
+    document.onkeydown = function (e) {
+      if (e.code == 'Escape' && !$popup.classList.contains('hide')) {
+        popupToggle($popup, 'close');
+      }
+    };
+  });
+  $popup.addEventListener('click', function (e) {
+    if (e.target === $popup || e.target == $popupClose) {
+      popupToggle($popup, 'close');
     }
-  });
-  popup.find('.popup__form button').addEventListener('click', function () {
-    return _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(popup.html, 'close');
-  });
+  }); /// form check
 
-  document.onkeydown = function (e) {
-    if (e.code == 'Escape' && !popup.html.classList.contains('hide')) {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(popup.html, 'close');
-    }
-  };
-
-  popup.find('.popup__form input').addEventListener('input', function () {
-    return Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkTextInputs"])(popup.find('.popup__form input'));
-  });
-  popup.find('.popup__form').addEventListener('click', function (e) {
-    e.preventDefault();
-    Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkTextInputs"])(popupPhone);
-
-    if (!Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["scrolling"])(popupPhone)) {
-      alert('Fill the form correctly!');
-    } else {
-      alert('Form is valid!');
-    }
-  });
-
-  function templatePopup() {
-    return "\n        <div class=\"popup__dialog\">\n            <div class=\"popup__close\">\n                <img src=\"icons/close.svg\">\n            </div>\n            <div class=\"popup__title\">\n                \u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C \u0437\u0432\u043E\u043D\u043E\u043A\n            </div>\n            <div class=\"popup__text\">\n                \u041E\u0441\u0442\u0430\u0432\u044C\u0442\u0435 \u0441\u0432\u043E\u0439 \u043D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430, \u0438 \u043C\u044B \u043F\u0435\u0440\u0435\u0437\u0432\u043E\u043D\u0438\u043C \u0412\u0430\u043C.\n            </div>\n            <div class=\"popup__form\">\n                <form>\n                    <input type=\"phone\" name=\"phonePopup\" id=\"phonePopup\" required placeholder=\"\u0422\u0435\u043B\u0435\u0444\u043E\u043D*\">\n                    <button type=\"submit\">\u0417\u0430\u043A\u0430\u0437\u0430\u0442\u044C \u0437\u0432\u043E\u043D\u043E\u043A</button>\n                </form>\n            </div>\n        </div>\n        ";
-  } /// form check
-
-
-  var form = document.querySelector('.formfield form'),
-      inputTextFields = form.querySelectorAll('#initials input '),
-      inputCheckboxes = form.querySelectorAll('.checkbox'),
-      inputRadioboxes = form.querySelectorAll('.radio'),
-      inputSetTimeFields = form.querySelectorAll('.formfield__delivery input');
+  var formMain = document.querySelector('.formfield form'),
+      formPopup = document.querySelector('.popup__form form'),
+      inputTextFields = formMain.querySelectorAll('#initials input '),
+      inputCheckboxes = formMain.querySelectorAll('.checkbox'),
+      inputRadioboxes = formMain.querySelectorAll('.radio'),
+      inputSetTimeFields = formMain.querySelectorAll('.formfield__delivery input'),
+      inputPopup = document.querySelectorAll('#phone-popup');
   inputTextFields.forEach(function (item) {
     item.addEventListener('input', function () {
-      return Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkTextInputs"])(inputTextFields);
+      return checkTextInputs(item);
     });
   });
-  form.addEventListener('submit', function handler(e) {
+  inputPopup.forEach(function (item) {
+    item.addEventListener('input', function () {
+      return checkTextInputs(item);
+    });
+  }); //при клике на кнопку заказать срабатывает событие 'submit', дальше идет проверка на валидность 
+
+  function checkTextInputs(input) {
+    if (input.getAttribute('type') === 'text' && input.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
+      input.style.borderBottomColor = 'red';
+    } else if (input.getAttribute('type') === 'phone' && input.value.match(/[^\d\+\(\)\-]/)) {
+      console.log('fffff');
+      console.log(input);
+      input.style.borderBottomColor = 'red';
+    } else {
+      input.style.borderBottomColor = 'black';
+    }
+  }
+
+  function checkCheckboxes(boxes) {
+    for (var index = 0; index < boxes.length; index++) {
+      if (boxes[index].checked) {
+        findTitle(boxes[index]).style.borderBottom = '';
+        return;
+      }
+    }
+
+    findTitle(boxes[0]).style.borderBottom = '1px solid red';
+  }
+
+  function checkSetTimeInputs(inputs) {
+    var count = 0;
+
+    for (var index = 0; index < inputs.length; index++) {
+      var set = inputs[index].dataset.set;
+
+      if (inputs[index].value === 'Задать' && set === 'settime') {
+        inputs[index].style.borderBottomColor = 'red';
+        count++;
+      }
+    }
+
+    if (count > 0) return;
+    inputs.forEach(function (item) {
+      return item.style.borderBottomColor = 'black';
+    });
+  }
+
+  function scrolling(item) {
+    if (item.style.borderBottomColor === 'red') {
+      item.scrollIntoView({
+        block: "center",
+        behavior: "smooth"
+      });
+      return false;
+    } else if (findTitle(item).style.borderBottomColor === 'red') {
+      findTitle(item).scrollIntoView({
+        block: "center",
+        behavior: "smooth"
+      });
+      return false;
+    }
+
+    return true;
+  }
+
+  function findTitle(item) {
+    try {
+      while (!item.classList.contains('title')) {
+        item = item.parentNode;
+        Array.prototype.forEach.call(item.children, function (i) {
+          if (i.classList.contains('title')) item = i;
+        });
+      }
+
+      return item;
+    } catch (err) {
+      return document.body;
+    }
+  }
+
+  formMain.addEventListener('submit', function (e) {
     e.preventDefault();
-    Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkCheckboxes"])(inputCheckboxes);
-    Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkCheckboxes"])(inputRadioboxes);
-    Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["checkSetTimeInputs"])(inputSetTimeFields);
+    checkCheckboxes(inputCheckboxes);
+    checkCheckboxes(inputRadioboxes);
+    checkSetTimeInputs(inputSetTimeFields);
     var inputs = [].concat(_toConsumableArray(inputTextFields), _toConsumableArray(inputCheckboxes), _toConsumableArray(inputRadioboxes), _toConsumableArray(inputSetTimeFields));
     var count = 0;
 
     for (var i = 0; i < inputs.length; i++) {
-      if (!Object(_templates_validform__WEBPACK_IMPORTED_MODULE_22__["scrolling"])(inputs[i])) {
+      if (!scrolling(inputs[i])) {
         alert('Fill the form correctly!');
         break;
       } else {
@@ -18326,23 +18378,52 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
-    if (count == inputs.length) alert('Form is valid!');
+    if (count == inputs.length) {
+      alert('Form is valid!');
+      e.target.reset();
+    }
+  });
+  formPopup.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var inputs = _toConsumableArray(inputPopup);
+
+    var count = 0;
+
+    for (var i = 0; i < inputs.length; i++) {
+      if (!scrolling(inputs[i])) {
+        alert('Fill the form correctly!');
+        break;
+      } else {
+        count++;
+      }
+    }
+
+    if (count == inputs.length) {
+      popupToggle($popup, 'close');
+      e.target.reset();
+    }
   }); ///Drop menu
+  //создаю в прототипе объекта даты функци. получения дней в месяце
 
-  function templateCalendar() {
-    return "\n            <div class=\"calendar__top\">\n                <div class=\"calendar__left\">\n                    <img src=\"icons/left.svg\">\n                </div>\n                <div class=\"calendar__month\">\u041E\u043A\u0442\u044F\u0431\u0440\u044C</div>\n                <div class=\"calendar__right\">\n                    <img src=\"icons/right.svg\">\n                </div>\n            </div>\n            <ul class=\"calendar__days\">\n            </ul>\n        ";
-  }
+  Date.prototype.daysInMonth = function (year, month) {
+    return 33 - new Date(year, month, 33).getDate();
+  };
 
-  Date.prototype.daysInMonth = _templates_calendar__WEBPACK_IMPORTED_MODULE_23__["daysInMonth"];
-  var calendar = new _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"](templateCalendar(), ['calendar']);
-  calendar.find('.calendar__icon').addEventListener('click', function () {
-    if (!document.querySelector('.calendar')) {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(calendar.html, 'open', '.formfield__delivery-date');
+  var $calendarTrigger = document.querySelector('.calendar__icon'),
+      $clockTrigger = document.querySelector('.clock__icon'),
+      $calendar = document.querySelector('.calendar'),
+      $calendarLeft = document.querySelector('.calendar__left'),
+      $calendarRight = document.querySelector('.calendar__right'),
+      $clock = document.querySelector('.clock');
+  $calendarTrigger.addEventListener('click', function () {
+    if ($calendar.classList.contains('hide')) {
+      popupToggle($calendar, 'open');
       var month = new Date().getMonth(),
           year = new Date().getFullYear(),
           countMonth = 0;
-      Object(_templates_calendar__WEBPACK_IMPORTED_MODULE_23__["setCalendar"])(calendar.html, month, year);
-      calendar.find('.calendar__left').addEventListener('click', function () {
+      setCalendar(month, year);
+      $calendarLeft.addEventListener('click', function () {
         if (countMonth) {
           countMonth--;
           month--;
@@ -18352,47 +18433,36 @@ document.addEventListener('DOMContentLoaded', function () {
             year--;
           }
 
-          Object(_templates_calendar__WEBPACK_IMPORTED_MODULE_23__["setCalendar"])(calendar.html, month, year);
+          setCalendar(month, year);
         } else {
-          Object(_templates_calendar__WEBPACK_IMPORTED_MODULE_23__["setCalendar"])(calendar.html, month, year);
+          setCalendar(month, year);
         }
       });
-      calendar.find('.calendar__right').addEventListener('click', function () {
+      $calendarRight.addEventListener('click', function () {
         countMonth++;
         month++;
 
         if (month % 12 == 0) {
           month = 0;
           year++;
-          Object(_templates_calendar__WEBPACK_IMPORTED_MODULE_23__["setCalendar"])(calendar.html, month, year);
+          setCalendar(month, year);
         } else {
-          Object(_templates_calendar__WEBPACK_IMPORTED_MODULE_23__["setCalendar"])(calendar.html, month, year);
+          setCalendar(month, year);
         }
       });
-
-      calendar.find('.calendar__days').onclick = function (e) {
-        if (e.target.tagName == 'LI') {
-          var inp = Array.prototype.find.call(inputSetTimeFields, function (i) {
-            if (i.getAttribute('id') == 'calendar') return i;
-          });
-          inp.value = "".concat(getZero(e.target.innerText), ".").concat(getZero(month + 1), ".").concat(year);
-          _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(calendar.html, 'close');
+      $calendar.addEventListener('click', function (e) {
+        if (e.target == document) {
+          popupToggle($calendar, 'close');
         }
-      };
+      });
     } else {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(calendar.html, 'close');
+      popupToggle($calendar, 'close');
     }
   });
-
-  function templateCLock() {
-    return "\n            <div class=\"clock__item\"><span data-from>9:00</span data-to>-<span>12:00</span></div>\n            <div class=\"clock__item\"><span data-from>12:00</span data-to>-<span>15:00</span></div>\n            <div class=\"clock__item\"><span data-from>15:00</span data-to>-<span>18:00</span></div>\n        ";
-  }
-
-  var clock = new _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"](templateCLock(), ['clock']);
-  clock.find('.clock__icon').addEventListener('click', function (e) {
-    if (!document.querySelector('.clock')) {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(clock.html, 'open', '.formfield__delivery-time');
-      clock.html.addEventListener('click', function (e) {
+  $clockTrigger.addEventListener('click', function () {
+    if ($clock.classList.contains('hide')) {
+      popupToggle($clock, 'open');
+      $clock.addEventListener('click', function (e) {
         var target = e.target;
 
         while (!target.classList.contains('clock__item')) {
@@ -18403,28 +18473,49 @@ document.addEventListener('DOMContentLoaded', function () {
           if (i.getAttribute('id') == 'clock') return i;
         });
         inp.value = target.innerText;
-        _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(clock.html, 'close');
+        popupToggle($clock, 'close');
       });
     } else {
-      _templates_popup__WEBPACK_IMPORTED_MODULE_21__["Popup"].popupMod(clock.html, 'close');
+      popupToggle($clock, 'close');
     }
   });
+
+  function setCalendar(month, year) {
+    var days = document.querySelector('.calendar__days');
+    var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
+    document.querySelector('.calendar__month').innerText = months[month];
+    days.innerHTML = '';
+    var daysAmount = Date.prototype.daysInMonth(year, month);
+    var n = 0;
+
+    for (var i = 0; i < daysAmount; i++) {
+      var li = document.createElement('li');
+      li.innerText += i + 1;
+      days.append(li);
+
+      if (i == 6 + n * 7) {
+        li.style.color = 'red';
+        li.previousElementSibling.style.color = 'red';
+        n++;
+      }
+    }
+
+    days.onclick = function (e) {
+      if (e.target.tagName === 'LI') {
+        var inp = Array.prototype.find.call(inputSetTimeFields, function (i) {
+          if (i.getAttribute('id') === 'calendar') return i;
+        });
+        inp.value = "".concat(getZero(e.target.innerText), ".").concat(getZero(month + 1), ".").concat(year);
+        popupToggle($calendar, 'close');
+      }
+    };
+  }
 
   function getZero(num) {
     if (num < 10) return '0' + num;
     return num;
-  } ///header
+  } ///SLIDER
 
-
-  function templateMenu() {
-    return "\n            <div class=\"bg\" data-set=\"bg\"></div>\n            <div class=\"close\" data-set=\"close\">\xD7</div>\n            <ul>\n                <li><a href=\"#about\" class=\"header__item\">\u041E \u043D\u0430\u0441</a></li>\n                <li><a href=\"#bouquets\" class=\"header__item\">\u0411\u0443\u043A\u0435\u0442\u044B</a></li>\n                <li><a href=\"#reviews\" class=\"header__item\">\u041E\u0442\u0437\u044B\u0432\u044B</a></li>\n                <li><a href=\"#payment\" class=\"header__item\">\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430 \u0438 \u043E\u043F\u043B\u0430\u0442\u0430</a></li>\n                <li><a href=\"#contacts\" class=\"header__item\">\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B</a></li>\n            </ul>\n        ";
-  }
-
-  var header = document.querySelector('header .container');
-  var humTrigger = document.querySelector('.header__menu');
-  humTrigger.addEventListener('click', function () {
-    return Object(_templates_dropmenu__WEBPACK_IMPORTED_MODULE_24__["showDropMenu"])(templateMenu(), ['drop'], 'header .container');
-  }); ///SLIDER
 
   var frame = document.querySelector('.reviews__main'),
       prev = document.querySelector('.reviews__left'),
@@ -18441,20 +18532,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 100);
 
   slidesField.style.transition = 'transform 0.3s ease-out 0s';
-
-  function recursy(elem) {
-    var childs = elem.children ? _toConsumableArray(elem.children) : null;
-
-    while (childs) {
-      childs.forEach(function (item) {
-        return item.addEventListener('selectstart', function () {
-          return false;
-        });
-      });
-    }
-  } // recursy(slidesField)
-
-
   prev.addEventListener('click', function () {
     moveToPrev();
 
@@ -18492,12 +18569,12 @@ document.addEventListener('DOMContentLoaded', function () {
       slideIndex--;
       slidesField.style.transform = "translateX(-".concat(offset, "px)");
     }
-  } ///MA
+  } ///MAP
 
 
   var map = document.querySelector('#map');
-  var mymap = leaflet__WEBPACK_IMPORTED_MODULE_26___default.a.map(map).setView([53.93023493974838, 27.588955400746784], 13);
-  leaflet__WEBPACK_IMPORTED_MODULE_26___default.a.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
+  var mymap = leaflet__WEBPACK_IMPORTED_MODULE_22___default.a.map(map).setView([53.93023493974838, 27.588955400746784], 13);
+  leaflet__WEBPACK_IMPORTED_MODULE_22___default.a.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 19,
     inZoom: 5,
@@ -18505,26 +18582,24 @@ document.addEventListener('DOMContentLoaded', function () {
     tileSize: 512,
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA',
-    center: [53.93023493974838, 27.588955400746784],
-    zoomControl: false
+    center: [53.93023493974838, 27.588955400746784]
   }).addTo(mymap);
   mymap.touchZoom.disable();
-  mymap.doubleClickZoom.disable();
   mymap.scrollWheelZoom.disable();
   mymap.boxZoom.disable();
   mymap.keyboard.disable();
-  var greenIcon = leaflet__WEBPACK_IMPORTED_MODULE_26___default.a.icon({
+  var greenIcon = leaflet__WEBPACK_IMPORTED_MODULE_22___default.a.icon({
     iconUrl: 'icons/mapMarker.svg',
     iconSize: [55, 72] // size of the icon
 
   });
-  var marker = leaflet__WEBPACK_IMPORTED_MODULE_26___default.a.marker([53.93023493974838, 27.588955400746784], {
+  var marker = leaflet__WEBPACK_IMPORTED_MODULE_22___default.a.marker([53.93023493974838, 27.588955400746784], {
     icon: greenIcon
   }).addTo(mymap).bindPopup("Букеты"); ///TO TOP
 
   var toTop = document.querySelector('.to__top');
   toTop.addEventListener('click', function () {
-    header.scrollIntoView({
+    document.querySelector('.header').scrollIntoView({
       block: "start",
       behavior: "smooth"
     });
@@ -18533,377 +18608,72 @@ document.addEventListener('DOMContentLoaded', function () {
   var fullscreenImgs = document.querySelectorAll('[data-show="full"]');
   fullscreenImgs.forEach(function (img) {
     return img.addEventListener('click', function () {
-      return Object(_templates_imgscreen__WEBPACK_IMPORTED_MODULE_25__["showFullScreenImg"])(img.src);
+      return showFullScreenImg(img.src);
     });
   });
-});
 
-/***/ }),
+  function showFullScreenImg(src) {
+    var $div = document.createElement('div');
+    var $newImg = document.createElement('img');
+    var $close = document.createElement('div');
+    $div.classList.add('bgForImg');
+    $newImg.src = src;
+    $newImg.style.borderRadius = '20px';
+    $close.className = 'img-close';
+    $div.append($newImg, $close);
+    document.body.append($div);
 
-/***/ "./src/js/templates/calendar.js":
-/*!**************************************!*\
-  !*** ./src/js/templates/calendar.js ***!
-  \**************************************/
-/*! exports provided: setCalendar, setDaysOfPrevMonth, setDaysOfNextMonth, daysInMonth */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+    var _window$getComputedSt = window.getComputedStyle($newImg),
+        width = _window$getComputedSt.width,
+        height = _window$getComputedSt.height;
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setCalendar", function() { return setCalendar; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDaysOfPrevMonth", function() { return setDaysOfPrevMonth; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDaysOfNextMonth", function() { return setDaysOfNextMonth; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysInMonth", function() { return daysInMonth; });
-/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.date.to-string */ "./node_modules/core-js/modules/es.date.to-string.js");
-/* harmony import */ var core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_date_to_string__WEBPACK_IMPORTED_MODULE_0__);
+    var _window$getComputedSt2 = window.getComputedStyle(document.body),
+        w = _window$getComputedSt2.width,
+        h = _window$getComputedSt2.height;
 
-function setCalendar(calendar, month, year) {
-  var days = calendar.querySelector('.calendar__days');
-  var months = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
-  calendar.querySelector('.calendar__month').innerText = months[month];
-  days.innerHTML = '';
-  var daysAmount = daysInMonth(year, month);
-  var n = 0;
+    var factor;
 
-  for (var i = 0; i < daysAmount; i++) {
-    var li = document.createElement('li');
-    li.innerText += i + 1;
-    days.append(li);
-
-    if (i == 6 + n * 7) {
-      li.style.color = 'red';
-      li.previousElementSibling.style.color = 'red';
-      n++;
-    }
-  }
-}
-function setDaysOfPrevMonth(calendar, month, year, countMonth) {
-  if (countMonth) {
-    countMonth--;
-    month--;
-
-    if (month == -1) {
-      month = 11;
-      year--;
-    }
-
-    setCalendar(calendar, month, year);
-  } else {
-    setCalendar(calendar, month, year);
-  }
-}
-function setDaysOfNextMonth(calendar, month, year, countMonth) {
-  countMonth++;
-  month++;
-
-  if (month % 12 == 0) {
-    month = 0;
-    year++;
-    setCalendar(calendar, month, year);
-  } else {
-    setCalendar(calendar, month, year);
-  }
-}
-function daysInMonth(year, month) {
-  return 33 - new Date(year, month, 33).getDate();
-}
-
-/***/ }),
-
-/***/ "./src/js/templates/dropmenu.js":
-/*!**************************************!*\
-  !*** ./src/js/templates/dropmenu.js ***!
-  \**************************************/
-/*! exports provided: createDropMenu, showDropMenu */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDropMenu", function() { return createDropMenu; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showDropMenu", function() { return showDropMenu; });
-/* harmony import */ var _popup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./popup */ "./src/js/templates/popup.js");
-
-function createDropMenu(html) {
-  var div = document.createElement('div');
-  div.classList.add('drop');
-  div.innerHTML = html;
-  return div;
-}
-function showDropMenu(html, classes, dest) {
-  var elem = new _popup__WEBPACK_IMPORTED_MODULE_0__["Popup"](html, [classes]);
-  _popup__WEBPACK_IMPORTED_MODULE_0__["Popup"].popupMod(elem.html, 'open', dest);
-  elem.html.addEventListener('click', function (e) {
-    var set = e.target.dataset.set;
-
-    if (set === 'bg' || set === 'close' || e.target.tagName == 'A') {
-      _popup__WEBPACK_IMPORTED_MODULE_0__["Popup"].popupMod(elem.html, 'close');
-    }
-  });
-}
-
-/***/ }),
-
-/***/ "./src/js/templates/imgscreen.js":
-/*!***************************************!*\
-  !*** ./src/js/templates/imgscreen.js ***!
-  \***************************************/
-/*! exports provided: showFullScreenImg */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showFullScreenImg", function() { return showFullScreenImg; });
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.string.replace */ "./node_modules/core-js/modules/es.string.replace.js");
-/* harmony import */ var core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_replace__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function showFullScreenImg(src) {
-  var $div = document.createElement('div');
-  var $newImg = document.createElement('img');
-  var $close = document.createElement('div');
-  $div.classList.add('bgForImg');
-  $div.style.overflow = 'hidden';
-  $close.setAttribute('data-type', 'close');
-  $newImg.src = src;
-  $div.append($newImg, $close);
-  document.body.append($div);
-
-  var _window$getComputedSt = window.getComputedStyle($newImg),
-      width = _window$getComputedSt.width,
-      height = _window$getComputedSt.height;
-
-  var _window$getComputedSt2 = window.getComputedStyle(document.body),
-      w = _window$getComputedSt2.width,
-      h = _window$getComputedSt2.height;
-
-  var factor;
-  console.log(+h.replace(/\px/, ''), +w.replace(/\px/, ''));
-
-  if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 3.7 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 3.7) {
-    factor = 2.5;
-    changeSize($newImg, $close, width, height, factor);
-  } else if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 3.2 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 3.2) {
-    factor = 2.1;
-    changeSize($newImg, $close, width, height, factor);
-  } else if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 2.5 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 2.5) {
-    factor = 1.7;
-    changeSize($newImg, $close, width, height, factor);
-  } else if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 2 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 2) {
-    factor = 1.3;
-    changeSize($newImg, $close, width, height, factor);
-  } else if (+width.replace(/\px/, '') < +w.replace(/\px/, '') / 1.7 && +height.replace(/\px/, '') < +h.replace(/\px/, '') / 1.7) {
-    factor = 1.15;
-    changeSize($newImg, $close, width, height, factor);
-  } else if (+width.replace(/\px/, '') > +w.replace(/\px/, '') * 0.85 || +height.replace(/\px/, '') > +h.replace(/\px/, '') * 0.85) {
-    factor = 0.85;
-    changeSize($newImg, $close, width, height, factor);
-  } else {
-    changeSize($newImg, $close, width, height);
-  }
-
-  $div.addEventListener('click', function (e) {
-    if (e.target === this || e.target === $close) {
-      this.remove();
-    }
-  });
-}
-
-function changeSize($newImg, $close, width, height) {
-  var factor = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
-  $newImg.style.transform = "scale(".concat(factor, ")");
-  $newImg.style.transition = '0.25s ease-in';
-  $newImg.style.opacity = 1;
-
-  $newImg.ontransitionend = function () {
-    $close.innerText = '╳';
-    $close.style.left = +width.replace(/\px/, '') / 2 * factor - 40 + 'px';
-    $close.style.bottom = +height.replace(/\px/, '') / 2 * factor - 33 + 'px';
-  };
-}
-
-/***/ }),
-
-/***/ "./src/js/templates/popup.js":
-/*!***********************************!*\
-  !*** ./src/js/templates/popup.js ***!
-  \***********************************/
-/*! exports provided: Popup */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Popup", function() { return Popup; });
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_define_property__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.define-property */ "./node_modules/core-js/modules/es.object.define-property.js");
-/* harmony import */ var core_js_modules_es_object_define_property__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_define_property__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Popup = /*#__PURE__*/function () {
-  function Popup(html, classes) {
-    _classCallCheck(this, Popup);
-
-    this.html;
-    this.createPopup(html, classes);
-  }
-
-  _createClass(Popup, [{
-    key: "find",
-    value: function find(selector) {
-      var result = this.html.querySelectorAll(selector);
-
-      if (result.length == 1) {
-        return result[0];
-      } else if (result.length > 1) {
-        return result;
-      }
-
-      result = document.querySelectorAll(selector);
-
-      if (result.length == 1) {
-        return result[0];
-      } else if (result.length > 1) {
-        return result;
-      }
-
-      return;
-    }
-  }, {
-    key: "createPopup",
-    value: function createPopup(html, classes) {
-      var popup = document.createElement('div');
-      if (classes) classes.length == 1 ? popup.classList.add(classes) : classes.forEach(function (cls) {
-        return popup.classList.add(cls);
-      });
-      popup.innerHTML = html;
-      this.html = popup;
-    }
-  }], [{
-    key: "popupMod",
-    value: function popupMod(elem, method, destSelector) {
-      var dest = document.querySelector(destSelector);
-
-      if (method === 'open' && !dest.querySelector(".".concat(elem.className))) {
-        dest.append(elem);
-      } else if (method === 'close') {
-        elem.remove();
-      } else {
-        console.log('WTF COMMAND, MAN!????');
-      }
-    }
-  }]);
-
-  return Popup;
-}();
-
-/***/ }),
-
-/***/ "./src/js/templates/validform.js":
-/*!***************************************!*\
-  !*** ./src/js/templates/validform.js ***!
-  \***************************************/
-/*! exports provided: checkTextInputs, checkCheckboxes, checkSetTimeInputs, scrolling, findTitle */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkTextInputs", function() { return checkTextInputs; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkCheckboxes", function() { return checkCheckboxes; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkSetTimeInputs", function() { return checkSetTimeInputs; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrolling", function() { return scrolling; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findTitle", function() { return findTitle; });
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.for-each */ "./node_modules/core-js/modules/es.array.for-each.js");
-/* harmony import */ var core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_for_each__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.regexp.exec */ "./node_modules/core-js/modules/es.regexp.exec.js");
-/* harmony import */ var core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.string.match */ "./node_modules/core-js/modules/es.string.match.js");
-/* harmony import */ var core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_match__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_for_each__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-function checkTextInputs(inputs) {
-  inputs.forEach(function (item) {
-    if (item.getAttribute('type') == 'text' && item.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
-      item.style.borderBottomColor = 'red';
-    } else if (item.getAttribute('type') == 'phone' && item.value.match(/[^\d\+\(\)\-]/)) {
-      item.style.borderBottomColor = 'red';
+    if (+width.replace('px', '') < +w.replace('px', '') / 3.7 && +height.replace('px', '') < +h.replace('px', '') / 3.7) {
+      factor = 2.5;
+      changeSize($newImg, $close, width, height, factor);
+    } else if (+width.replace('px', '') < +w.replace('px', '') / 3.2 && +height.replace('px', '') < +h.replace('px', '') / 3.2) {
+      factor = 2.1;
+      changeSize($newImg, $close, width, height, factor);
+    } else if (+width.replace('px', '') < +w.replace('px', '') / 2.5 && +height.replace('px', '') < +h.replace('px', '') / 2.5) {
+      factor = 1.7;
+      changeSize($newImg, $close, width, height, factor);
+    } else if (+width.replace('px', '') < +w.replace('px', '') / 2 && +height.replace('px', '') < +h.replace('px', '') / 2) {
+      factor = 1.3;
+      changeSize($newImg, $close, width, height, factor);
+    } else if (+width.replace('px', '') < +w.replace('px', '') / 1.7 && +height.replace('px', '') < +h.replace('px', '') / 1.7) {
+      factor = 1.15;
+      changeSize($newImg, $close, width, height, factor);
+    } else if (+width.replace('px', '') > +w.replace('px', '') * 0.85 || +height.replace('px', '') > +h.replace('px', '') * 0.85) {
+      factor = 0.85;
+      changeSize($newImg, $close, width, height, factor);
     } else {
-      item.style.borderBottomColor = 'black';
+      changeSize($newImg, $close, width, height);
     }
-  });
-}
-function checkCheckboxes(boxes) {
-  for (var index = 0; index < boxes.length; index++) {
-    if (boxes[index].checked) {
-      findTitle(boxes[index]).style.borderBottom = '';
-      return;
-    }
-  }
 
-  findTitle(boxes[0]).style.borderBottom = '1px solid red';
-}
-function checkSetTimeInputs(inputs) {
-  var count = 0;
-
-  for (var index = 0; index < inputs.length; index++) {
-    var set = inputs[index].dataset.set;
-
-    if (inputs[index].value === 'Задать' && set === 'settime') {
-      inputs[index].style.borderBottomColor = 'red';
-      count++;
-    }
-  }
-
-  if (count > 0) return;
-  inputs.forEach(function (item) {
-    return item.style.borderBottomColor = 'black';
-  });
-}
-function scrolling(item) {
-  if (item.style.borderBottomColor === 'red') {
-    item.scrollIntoView({
-      block: "center",
-      behavior: "smooth"
+    $div.addEventListener('click', function (e) {
+      if (e.target === this || e.target === $close) {
+        this.remove();
+      }
     });
-    return false;
-  } else if (findTitle(item).style.borderBottomColor === 'red') {
-    findTitle(item).scrollIntoView({
-      block: "center",
-      behavior: "smooth"
+  }
+
+  function changeSize($newImg, $close, width, height) {
+    var factor = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
+    $newImg.style.transform = "scale(".concat(factor, ")");
+    $newImg.style.transition = '0.25s ease-in';
+    $newImg.style.opacity = 1;
+    $newImg.addEventListener('transitionend', function () {
+      $close.innerText = '╳';
+      $close.style.left = +width.replace(/px/, '') / 2 * factor - 40 + 'px';
+      $close.style.bottom = +height.replace(/px/, '') / 2 * factor - 33 + 'px';
     });
-    return false;
   }
-
-  return true;
-}
-function findTitle(item) {
-  try {
-    while (!item.classList.contains('title')) {
-      item = item.parentNode;
-      Array.prototype.forEach.call(item.children, function (i) {
-        if (i.classList.contains('title')) item = i;
-      });
-    }
-
-    return item;
-  } catch (err) {
-    return;
-  }
-}
+});
 
 /***/ })
 

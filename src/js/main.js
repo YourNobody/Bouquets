@@ -1,34 +1,131 @@
 'use strict'
 
-//импортируюет функционал с других файлов сюда
-import { Popup } from './templates/popup'
-import { checkTextInputs, checkCheckboxes, checkSetTimeInputs, scrolling } from './templates/validform'
-import { setCalendar, daysInMonth } from './templates/calendar'
-import { showDropMenu } from './templates/dropmenu'
-import { showFullScreenImg } from './templates/imgscreen' 
+//импортируюет функционал карты
 import L from 'leaflet'
 
 //навешиваюию обработчик события который выполнится когда дом структура будет загружена
 document.addEventListener('DOMContentLoaded', () => {
-    //создаю экземпляр класа всплывающего окна
+    //создаю всплывающее окно
+    const $dropMenuTrigger = document.querySelector('.header__menu')
+    const $dropMenu = document.querySelector('.drop')
+
+    $dropMenuTrigger.addEventListener('click', () => popupToggle($dropMenu, 'open'))
+
+    $dropMenu.addEventListener('click', (e) => {
+        const { set } = e.target.dataset
+        if (set === 'bg' || set === 'close') popupToggle($dropMenu, 'close')
+        else if (e.target.tagName === 'A') popupToggle($dropMenu, 'close')
+    })
+
+    function popupToggle(elem, method) {
+        if (!elem) return 'Element is not defined'
+        
+        if (method === 'open') elem.classList.remove('hide')
+        else if (method === 'close') elem.classList.add('hide')
+        else return 'Choose the correct method'
+    }
+
+    const $popup = document.querySelector('.popup'),
+          $popupTrigger = document.querySelector('.aside__btn'),
+          $popupClose = document.querySelector('.popup__close img')
+
+    $popupTrigger.addEventListener('click', () => {
+        popupToggle($popup, 'open')
+
+        document.onkeydown = (e) => {
+            if (e.code == 'Escape' && !$popup.classList.contains('hide')) { 
+                popupToggle($popup, 'close')
+            }
+        }
     
+    })
+
+    $popup.addEventListener('click', (e) => {
+        if (e.target === $popup || e.target == $popupClose) {
+            popupToggle($popup, 'close')
+        }
+    })
 
     /// form check
 
-    const form = document.querySelector('.formfield form'),
-          inputTextFields = form.querySelectorAll('#initials input '),
-          inputCheckboxes = form.querySelectorAll('.checkbox'),
-          inputRadioboxes = form.querySelectorAll('.radio'),
-          inputSetTimeFields = form.querySelectorAll('.formfield__delivery input'),
-          inputPopup = document.querySelectorAll('#phonePopup')
+    const formMain = document.querySelector('.formfield form'),
+          formPopup = document.querySelector('.popup__form form'),
+          inputTextFields = formMain.querySelectorAll('#initials input '),
+          inputCheckboxes = formMain.querySelectorAll('.checkbox'),
+          inputRadioboxes = formMain.querySelectorAll('.radio'),
+          inputSetTimeFields = formMain.querySelectorAll('.formfield__delivery input'),
+          inputPopup = document.querySelectorAll('#phone-popup')
 
 
     inputTextFields.forEach(item => {
-        item.addEventListener('input', () => checkTextInputs(inputTextFields))
+        item.addEventListener('input', () => checkTextInputs(item))
+    })
+
+    inputPopup.forEach(item => {
+        item.addEventListener('input', () => checkTextInputs(item))
     })
 
     //при клике на кнопку заказать срабатывает событие 'submit', дальше идет проверка на валидность 
-    form.addEventListener('submit', function handler(e) {
+
+    function checkTextInputs(input) {
+        if (input.getAttribute('type') === 'text' && input.value.match(/[^a-zA-Zа-яА-Я\s]/)) {
+            input.style.borderBottomColor = 'red'
+        } else if (input.getAttribute('type') === 'phone' && input.value.match(/[^\d\+\(\)\-]/)) {
+            console.log('fffff')
+            console.log(input)
+            input.style.borderBottomColor = 'red'
+        } else {
+            input.style.borderBottomColor = 'black'
+        }
+    }
+    function checkCheckboxes(boxes) {
+        for (let index = 0; index < boxes.length; index++) {
+            if (boxes[index].checked) {
+                findTitle(boxes[index]).style.borderBottom = ''
+                return
+            }            
+        }
+        findTitle(boxes[0]).style.borderBottom = '1px solid red'
+    }
+    function checkSetTimeInputs(inputs) {
+        let count = 0
+        for (let index = 0; index < inputs.length; index++) {
+            let { set } = inputs[index].dataset
+            if (inputs[index].value === 'Задать' && set === 'settime') {
+                inputs[index].style.borderBottomColor = 'red'
+                count++
+            }
+        }
+        if (count > 0) return
+        inputs.forEach(item => item.style.borderBottomColor = 'black') 
+    }
+    
+    function scrolling(item) {
+        if (item.style.borderBottomColor === 'red') {
+            item.scrollIntoView({block: "center", behavior: "smooth"})
+            return false
+        } else if (findTitle(item).style.borderBottomColor === 'red') {
+            findTitle(item).scrollIntoView({block: "center", behavior: "smooth"})
+            return false
+        }
+        return true
+    }
+    
+    function findTitle(item) {
+       try {
+            while (!item.classList.contains('title')) {
+                item = item.parentNode
+                Array.prototype.forEach.call(item.children, i => {
+                    if (i.classList.contains('title')) item = i
+                })
+            }
+            return item
+       } catch (err) {
+            return document.body
+       }
+    }
+
+    formMain.addEventListener('submit', (e) => {
         e.preventDefault()
         checkCheckboxes(inputCheckboxes)
         checkCheckboxes(inputRadioboxes)
@@ -37,8 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ...inputTextFields,
             ...inputCheckboxes,
             ...inputRadioboxes,
-            ...inputSetTimeFields,
-            ...inputPopup
+            ...inputSetTimeFields
         ]
         let count = 0
         for (let i = 0; i < inputs.length; i++) {
@@ -49,26 +145,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 count++
             }
         }
-        if (count == inputs.length) alert('Form is valid!')
+        if (count == inputs.length) {
+            alert('Form is valid!')
+            e.target.reset()
+        }
     })
+
+    formPopup.addEventListener('submit', (e) => {
+        e.preventDefault()
+        let inputs = [...inputPopup]
+        let count = 0
+        for (let i = 0; i < inputs.length; i++) {
+            if (!scrolling(inputs[i])) {
+                alert('Fill the form correctly!')
+                break
+            } else {
+                count++
+            }
+        }
+        if (count == inputs.length) {
+            popupToggle($popup, 'close')
+            e.target.reset()
+        }
+    })
+
 
 
     ///Drop menu
     //создаю в прототипе объекта даты функци. получения дней в месяце
-    Date.prototype.daysInMonth = daysInMonth
+    Date.prototype.daysInMonth = function(year, month) {
+		return 33 - new Date(year, month, 33).getDate()
+	}
 
-    //создаю экзмеляр класса
-    const calendar = new Popup(templateCalendar(), ['calendar'])
-        
-    calendar.find('.calendar__icon').addEventListener('click', () => {
-        if (!document.querySelector('.calendar')) {
-            Popup.popupMod(calendar.html, 'open', '.formfield__delivery-date')
+    const $calendarTrigger = document.querySelector('.calendar__icon'),
+          $clockTrigger = document.querySelector('.clock__icon'),
+          $calendar = document.querySelector('.calendar'),
+          $calendarLeft = document.querySelector('.calendar__left'),
+          $calendarRight = document.querySelector('.calendar__right'),
+          $clock = document.querySelector('.clock')
+
+    $calendarTrigger.addEventListener('click', () => {
+        if ($calendar.classList.contains('hide')) {
+                popupToggle($calendar, 'open')
             let month = new Date().getMonth(),
                 year = new Date().getFullYear(),
                 countMonth = 0
 
-            setCalendar(calendar.html, month, year)
-            calendar.find('.calendar__left').addEventListener('click', () => {
+            setCalendar(month, year)
+            $calendarLeft.addEventListener('click', () => {
                 if (countMonth) {
                     countMonth--
                     month--
@@ -76,45 +200,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         month = 11
                         year--
                     }
-                    setCalendar(calendar.html, month, year)
+                    setCalendar(month, year)
                 } else {
-                    setCalendar(calendar.html, month, year)
+                setCalendar(month, year) 
                 }
+
             })
-            calendar.find('.calendar__right').addEventListener('click', () => {
+            $calendarRight.addEventListener('click', () => {
                 countMonth++
                 month++
                 if (month % 12 == 0) {
                     month = 0
                     year++
-                    setCalendar(calendar.html, month, year)
+                    setCalendar(month, year)
                 } else {
-                    setCalendar(calendar.html, month, year)
+                    setCalendar(month, year)
                 }
             })
-            calendar.find('.calendar__days').onclick = function(e) {
-                if (e.target.tagName == 'LI') {
-                    let inp = Array.prototype.find.call(inputSetTimeFields, i => {
-                        if (i.getAttribute('id') == 'calendar') return i
-                    })
-                    inp.value = `${getZero(e.target.innerText)}.${getZero(month + 1)}.${year}`
-                    Popup.popupMod(calendar.html, 'close')
+            $calendar.addEventListener('click', (e) => {
+                if (e.target == document) {
+                    popupToggle($calendar, 'close')
                 }
-            } 
+            })
         } else {
-            Popup.popupMod(calendar.html, 'close')
+            popupToggle($calendar, 'close')
         }
     })
 
+    $clockTrigger.addEventListener('click', () => {
+        if ($clock.classList.contains('hide')) {
+            popupToggle($clock, 'open')
 
-    //создаю экземпляр класса
-    const clock = new Popup(templateCLock(), ['clock'])
-
-    clock.find('.clock__icon').addEventListener('click', (e) => {
-        if (!document.querySelector('.clock')) {
-            Popup.popupMod(clock.html, 'open', '.formfield__delivery-time')
-
-            clock.html.addEventListener('click', (e) => {
+            $clock.addEventListener('click', (e) => {
                 let target = e.target
                 while(!target.classList.contains('clock__item')) {
                     target = target.parentNode
@@ -123,25 +240,59 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (i.getAttribute('id') == 'clock') return i
                 })
                 inp.value = target.innerText
-                Popup.popupMod(clock.html, 'close')
+                popupToggle($clock, 'close')
             })
         } else {
-            Popup.popupMod(clock.html, 'close')
+            popupToggle($clock, 'close')
         }
     })
 
-    //если число меньше 10 то для правильного отображения даты будет добавлен нуль
+    function setCalendar(month, year) {
+        const days = document.querySelector('.calendar__days')
+        const months = [
+            'Январь',
+            'Февраль',
+            'Март',
+            'Апрель',
+            'Май',
+            'Июнь',
+            'Июль',
+            'Август',
+            'Сентябрь',
+            'Октябрь',
+            'Ноябрь',
+            'Декабрь'
+        ]
+        document.querySelector('.calendar__month').innerText = months[month]
+        days.innerHTML = ''
+        let daysAmount = Date.prototype.daysInMonth(year, month)
+        let n = 0
+        for (let i = 0; i < daysAmount; i++) {
+            let li = document.createElement('li')
+            li.innerText += i + 1
+            days.append(li)
+            if (i == 6 + (n * 7)) {
+                li.style.color = 'red'
+                li.previousElementSibling.style.color= 'red'
+                n++
+            }
+        }
+        days.onclick = function(e) {
+            if (e.target.tagName === 'LI') {
+                let inp = Array.prototype.find.call(inputSetTimeFields, i => {
+                    if (i.getAttribute('id') === 'calendar') return i
+                })
+                inp.value = `${getZero(e.target.innerText)}.${getZero(month + 1)}.${year}`
+                popupToggle($calendar, 'close')
+            }
+        } 
+    }
+
     function getZero(num) {
         if (num < 10) return '0' + num
         return num
     }
 
-///header
-
-    ///выпадающее меню
-    const header = document.querySelector('header .container')
-    const humTrigger = document.querySelector('.header__menu')
-    humTrigger.addEventListener('click', () => showDropMenu(templateMenu(), ['drop'], 'header .container'))
 
     ///SLIDER
     const frame = document.querySelector('.reviews__main'),
@@ -196,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ///MAP
 
     const map = document.querySelector('#map')
-    const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784]);
+    const mymap = L.map(map).setView([53.93023493974838, 27.588955400746784], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoieW91cm5vYm9keSIsImEiOiJja2hxa2FueXEwMTZiMzVsaDRsZ3h2ZzEwIn0.zvDPw-4w26yQXkOow24pyA', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -222,13 +373,72 @@ document.addEventListener('DOMContentLoaded', () => {
     const marker = L.marker([53.93023493974838, 27.588955400746784], {icon: greenIcon}).addTo(mymap).bindPopup("Букеты");
 
     ///TO TOP
+
     const toTop = document.querySelector('.to__top')
     toTop.addEventListener('click', () => {
-        header.scrollIntoView({ block: "start", behavior: "smooth" })
+        document.querySelector('.header').scrollIntoView({ block: "start", behavior: "smooth" })
     })
 
     ///IMGS
 
     const fullscreenImgs = document.querySelectorAll('[data-show="full"]')
     fullscreenImgs.forEach(img => img.addEventListener('click', () => showFullScreenImg(img.src)))
+
+    function showFullScreenImg(src) {
+        const $div = document.createElement('div')
+        const $newImg = document.createElement('img')
+        const $close = document.createElement('div')
+    
+        $div.classList.add('bgForImg')
+        $newImg.src = src
+        $newImg.style.borderRadius = '20px'
+        $close.className = 'img-close'
+    
+        $div.append($newImg, $close)  
+        document.body.append($div)
+    
+        const { width, height } = window.getComputedStyle($newImg)
+        const { width: w, height: h} = window.getComputedStyle(document.body)
+    
+        let factor
+
+        if (+width.replace('px', '') < +w.replace('px', '') / 3.7 && +height.replace('px', '') < +h.replace('px', '') / 3.7) {
+            factor = 2.5
+            changeSize($newImg, $close, width, height, factor)
+        } else if (+width.replace('px', '') < +w.replace('px', '') / 3.2 && +height.replace('px', '') < +h.replace('px', '') / 3.2) {
+            factor = 2.1
+            changeSize($newImg, $close, width, height, factor)
+        } else if (+width.replace('px', '') < +w.replace('px', '') / 2.5 && +height.replace('px', '') < +h.replace('px', '') / 2.5) {
+            factor = 1.7
+            changeSize($newImg, $close, width, height, factor)
+        } else if (+width.replace('px', '') < +w.replace('px', '') / 2 && +height.replace('px', '') < +h.replace('px', '') / 2) {
+            factor = 1.3
+            changeSize($newImg, $close, width, height, factor)
+        } else if (+width.replace('px', '') < +w.replace('px', '') / 1.7 && +height.replace('px', '') < +h.replace('px', '') / 1.7) {
+            factor = 1.15
+            changeSize($newImg, $close, width, height, factor)
+        } else if (+width.replace('px', '') > +w.replace('px', '') * 0.85 || +height.replace('px', '') > +h.replace('px', '') * 0.85) {
+            factor = 0.85
+            changeSize($newImg, $close, width, height, factor)
+        } else {
+            changeSize($newImg, $close, width, height)
+        }
+        $div.addEventListener('click', function(e) {
+            if (e.target === this || e.target === $close) {
+                this.remove()
+            }
+        })
+    }
+    
+    function changeSize($newImg, $close, width, height, factor = 1) {
+        $newImg.style.transform = `scale(${factor})`
+        $newImg.style.transition = '0.25s ease-in'
+        $newImg.style.opacity= 1
+        $newImg.addEventListener('transitionend', () => {
+            $close.innerText = '╳'
+            $close.style.left = +width.replace(/px/, '') / 2 * factor - 40 + 'px';
+            $close.style.bottom = +height.replace(/px/, '') / 2 * factor - 33 + 'px';
+        })
+    }
 })
+
